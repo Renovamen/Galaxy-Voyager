@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Galaxy Voyager</title>
+    <link href="src/css/start.css" rel="stylesheet" >
+    <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body id="skrollr-body">
+  	<div class="wrapper">
+      <div id="effects-wrapper">
+        <div id="text-wrapper">
+          <div class="text-inner" data-smooth-scrolling="off" data-top="opacity: 1; position: fixed; top: 0px; width: 100%;" data--200-top-bottom="top: 0px; opacity: 1; width: 100%;" data--300-top-bottom="position: fixed; top: -520px; opacity: 0; width: 100%;" data-anchor="#effects-wrapper">
+            <h3 data-start="opacity: 1;" data-150-start="opacity: 0;">It is not easy to be a voyager, but we still want to leave.</h3>
+            <h1 id="ThreeD-1">Galaxy</h1>
+            <h1 id="ThreeD-2">Voyager</h1>
+          </div>
+        </div>
+
+        <div id="text-no-webgl">
+          <div class="text-inner">
+            <h1>Galaxy Voyager</h1>
+            <canvas id="canvas-test" width="0" height="0"></canvas>
+          </div>
+        </div>
+
+        <div id="valley-wrapper" class="valley">
+          <div id="valley-6" data-p-max="-10" data-p-min="10" class="valley"></div>
+          <div id="valley-5" data-p-max="-8" data-p-min="8" class="valley"></div>
+          <div id="valley-4" data-p-max="-6" data-p-min="6" class="valley"></div>
+          <div id="valley-3" data-p-max="-4" data-p-min="4" class="valley"></div>
+          <div id="valley-2" data-p-max="-2" data-p-min="2" class="valley"></div>
+          <div id="valley-1" class="valley"></div>
+        </div>
+      </div>
+
+      <div id="content-wrapper">
+        <section id="content">
+          <header data-100-bottom-top="opacity: 0; margin-top: -20%; padding-bottom: 20%" data-bottom-top="opacity: 1; margin-top: -30%; padding-bottom: 30%" data--500-bottom-top="margin-top: 0%; padding-bottom: 0%">
+            <div class="divide"></div>
+            
+            <h1>Galaxy Voyager</h1>
+            <hr/>
+
+            <h2>It is not easy to be a voyager, but we still want to leave.</h2>
+            <div class="divide"></div>
+            <a href="views/choose-level.html" class="button">Voyage!</a>
+          </header>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/three.js/r68/three.min.js"></script>
+    <script src="https://cdn.bootcss.com/skrollr/0.6.30/skrollr.min.js"></script>
+    <script src="lib/threeCSG.js"></script>
+
+    <script src="src/js/start/lato_light.typeface.js"></script>
+
+    <script src="src/js/start/Line.js"></script>
+    <script src="src/js/start/Character.js"></script>
+    <script src="src/js/start/SubCharacter.js"></script>
+    <script src="src/js/start/Settings.js"></script>
+    <script src="src/js/start/core.js"></script>
+
+  </body>
+</html>

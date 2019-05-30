@@ -1,0 +1,162 @@
+body {
+	margin: 0;
+	font-family: 'Audiowide';
+}
+
+.game-holder {
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center center;
+	background-image: url("../img/level/level1/bg.jpg");
+	overflow: hidden;
+}
+
+.bg-hover {
+	height: 100%;
+  	width: 100%;
+	position: relative;
+	background-size: cover;
+  	background:rgba(40, 57, 101, .5);
+}
+
+.world {
+	position: absolute;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+.header {
+	position: absolute;
+	top: 8vh;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	pointer-events: none;
+}
+
+.header h1 {
+	font-size: 2em;
+	line-height: 1;
+	margin: 0;
+	letter-spacing: -0.025em;
+	color: #ffffff;
+}
+
+.score {
+	width: 100%;
+	margin: 2em 0 0;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.score__content {
+	position: relative;
+	display: inline-block;
+	padding: 0 1em;
+	vertical-align: top;
+}
+
+.score__content:nth-child(2) {
+	border-right: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+}
+
+.score__label {
+	font-size: 9px;
+	position: relative;
+	margin: 0 0 0.5em 0;
+	text-align: center;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	color: #ffffff;
+}
+
+.score__value {
+	font-weight: bold;
+	color: #ffffff;
+}
+
+.score__value--level {
+	font-size: 26px;
+}
+
+.score__value--dist {
+	font-size: 30px;
+}
+
+.level-circle {
+	position: absolute;
+	left: 50%;
+	width: 46px;
+	margin: -37px 0 0 -23px;
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
+.score__value--energy {
+	position: relative;
+	width: 60px;
+	height: 8px;
+	margin-top: 20px;
+	border-radius: 3px;
+	background-color: #ffffff;
+}
+
+.energy-bar {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: 2px;
+	background-color: #f25346;
+	-webkit-animation-name: none;
+	animation-name: none;
+	-webkit-animation-duration: 150ms;
+	animation-duration: 150ms;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	} 
+}
+
+.message {
+	font-weight: bold;
+	position: absolute;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	pointer-events: none;
+}
+
+.message--replay {
+	font-size: 1.25vw;
+	bottom: 40vh;
+	display: none;
+	text-indent: 0.5em;
+	letter-spacing: 0.5em;
+	color: #ffffff;
+	top: 40%;
+}
+
+.message--poor {
+	font-size: 1.25vw;
+	align-content: center;
+	width: 50%;
+	margin-right: 10px;
+	display: none;
+	top: 30%;
+	color: #ffffff;
+}

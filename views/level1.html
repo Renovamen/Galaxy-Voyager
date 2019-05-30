@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Galaxy Voyager | Level #1: Fly</title>
+		<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+		<link href="https://cdn.bootcss.com/jBox/0.4.9/jBox.min.css" rel="stylesheet">
+		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="../src/css/level1-fly.css" rel="stylesheet" type="text/css">
+		<link href="../src/css/navbar.css" rel="stylesheet">
+		<link href="../src/css/float-window.css" rel="stylesheet">
+	</head>
+	<body>
+		<!------------ 导航菜单 ------------>
+		<div class="navbar">
+			<p>Menu</p>
+			<ul class="menu">
+				<li id="Tooltip-1"><a href="https://github.com/Renovamen/Galaxy-Voyager" target="_blank"><i class="fa fa-github fa-2x"></i></a></li>
+				<li id="Tooltip-2"><a href="../"><i class="fa fa-fort-awesome fa-2x"></i></a></li>
+				<li id="Tooltip-3"><a href="choose-level.html"><i class="fa fa-empire fa-2x"></i></a></li>
+				<li id="Tooltip-4"><a href="#"><i class="fa fa-info fa-2x"></i></a></li>
+			</ul>
+		</div>
+		
+		<!------------ 游戏 ------------>
+		<div class="game-holder" id="gameHolder">
+			<div class="bg-hover">
+				<div class="header">
+					<h1>LEVEL YOUR PLANET</h1>
+					<div class="score" id="score">
+						<div class="score__content" id="level">
+							<div class="score__label">level</div>
+							<div class="score__value score__value--level" id="levelValue">1</div>
+							<svg class="level-circle" id="levelCircle" viewbox="0 0 200 200">
+								<circle id="levelCircleBgr" r="80" cx="100" cy="100" fill="none" stroke="#ffffff" stroke-width="24px" />
+								<circle id="levelCircleStroke" r="80" cx="100" cy="100" fill="none" #f25346 stroke="#68c3c0" stroke-width="14px" stroke-dasharray="502" />
+							</svg>
+						</div>
+						<div class="score__content" id="dist">
+							<div class="score__label">distance</div>
+							<div class="score__value score__value--dist" id="distValue">000</div>
+						</div>
+						<div class="score__content" id="energy">
+							<div class="score__label">energy</div>
+							<div class="score__value score__value--energy" id="energyValue">
+								<div class="energy-bar" id="energyBar"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="message message--poor" id="poorMessage">You are very poor, so you can only afford this ugly spaceship. Good luck :)</div>
+				<div class="world" id="world"></div>
+				<div class="message message--replay" id="replayMessage">Click to Replay</div>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+		<script src="https://cdn.bootcss.com/three.js/104/three.min.js"></script>
+		<script src="../src/js/level/level1-fly.js" type="text/javascript"></script>
+
+		<!----------- 悬浮窗 ----------->
+		<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/jBox/0.4.9/jBox.min.js"></script>
+		<script>
+		  $(document).ready(function() {
+			new jBox('Mouse', {
+			  attach: '#Tooltip-1',
+			  position: {x: 'right', y: 'bottom'},
+			  content: 'Source code on github.',
+			});
+			new jBox('Mouse', {
+			  attach: '#Tooltip-2',
+			  position: {x: 'right', y: 'bottom'},
+			  content: 'Go back to homepage.'
+			});
+			new jBox('Mouse', {
+			  attach: '#Tooltip-3',
+			  position: {x: 'right', y: 'bottom'},
+			  content: 'Choose another voyage'
+			});
+			new jBox('Mouse', {
+			  attach: '#Tooltip-4',
+			  position: {x: 'right', y: 'bottom'},
+			  content: 'Tips: Grab the blue pills, avoid the red ones.'
+			});
+		  });
+		</script>
+	</body>
+</html>

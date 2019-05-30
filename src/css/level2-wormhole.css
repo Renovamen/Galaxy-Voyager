@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  position: absolute;
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+  background-image: url("../img/level/level2/bg.jpg");
+  font-family: "Audiowide";
+  overflow: hidden;
+}
+
+.bg-holder {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-size: cover;
+  background:rgba(40, 57, 101, .6);
+  z-index: -1;
+}
+
+.barrier path {
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.hud-background {
+  stroke: none;
+  fill: white;
+  fill-opacity: 0.8;      
+}
+
+.hud-foreground {
+  stroke: black;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  fill: none;
+}
+
+text {
+  font-family: sans-serif;
+  font-weight: bold;
+}
