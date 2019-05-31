@@ -25,11 +25,11 @@ function resetGame(){
   game = {
     // --------------- 基本变量 --------------- 
     speed: 0,
-    initSpeed: 0.00015, // 初始速度
-    baseSpeed: 0.00015, // 单位速度
-    targetBaseSpeed: 0.00015, // 目标速度
-    incrementSpeedByTime: 0.0000005, // 每单位时间提多少速
-    incrementSpeedByLevel: 0.000001, // 每单位距离提多少速
+    initSpeed: 0.0002, // 初始速度
+    baseSpeed: 0.0002, // 单位速度
+    targetBaseSpeed: 0.0002, // 目标速度
+    incrementSpeedByTime: 0.000001, // 每单位时间提多少速
+    incrementSpeedByLevel: 0.000005, // 每等级提多少速
     distanceForSpeedUpdate: 100, // 每过多少距离提一次速
     speedLastUpdate: 0, // 上次提速时间
     distance: 0, // 行驶距离
@@ -686,7 +686,7 @@ function loop(){
     updateDistance();
     updateEnergy();
     game.baseSpeed += (game.targetBaseSpeed - game.baseSpeed) * deltaTime * 0.02;
-    game.speed = game.baseSpeed * game.shipSpeed;
+    game.speed = game.baseSpeed;// * game.shipSpeed;
   }
 
   // 游戏结束
@@ -729,6 +729,7 @@ function loop(){
 
 function updateDistance(){
   game.distance += game.speed*deltaTime*game.ratioSpeedDistance;
+  console.log("distance: ", game.distance, "speed: ", game.speed, "delta: ", deltaTime)
   fieldDistance.innerHTML = Math.floor(game.distance);
   var d = 502*(1-(game.distance%game.distanceForLevelUpdate)/game.distanceForLevelUpdate);
   levelCircle.setAttribute("stroke-dashoffset", d);
