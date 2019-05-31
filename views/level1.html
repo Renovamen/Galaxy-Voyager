@@ -5,27 +5,41 @@
 		<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
 		<link href="https://cdn.bootcss.com/jBox/0.4.9/jBox.min.css" rel="stylesheet">
 		<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<link href="../src/css/level1-fly.css" rel="stylesheet" type="text/css">
 		<link href="../src/css/navbar.css" rel="stylesheet">
 		<link href="../src/css/float-window.css" rel="stylesheet">
+		<link href="../src/css/dbbar.css" rel="stylesheet">
 	</head>
 	<body>
 		<!------------ 导航菜单 ------------>
 		<div class="navbar">
 			<p>Menu</p>
 			<ul class="menu">
-				<li id="Tooltip-1"><a href="https://github.com/Renovamen/Galaxy-Voyager" target="_blank"><i class="fa fa-github fa-2x"></i></a></li>
+				<li id="Tooltip-1"><a href="#"><i class="fa fa-microphone fa-2x"></i></a></li>
 				<li id="Tooltip-2"><a href="../"><i class="fa fa-fort-awesome fa-2x"></i></a></li>
 				<li id="Tooltip-3"><a href="choose-level.html"><i class="fa fa-empire fa-2x"></i></a></li>
 				<li id="Tooltip-4"><a href="#"><i class="fa fa-info fa-2x"></i></a></li>
 			</ul>
 		</div>
+
+		<!------------ 语音分贝条 ------------>
+		<div class="col-md-offset-3 col-md-6">
+			<div class="db" id="db">
+				<h3 class="db-title" id="db-title">Decibel</h3>
+				<div class="db-bar" id="db-bar" style="background:#294bdc;">
+					<div class="db-value" id="db-value"></div>
+				</div>
+			</div>
+		</div>
+		<script src="../src/js/level/level1-fly/decibel.js"></script>
+
 		
 		<!------------ 游戏 ------------>
 		<div class="game-holder" id="gameHolder">
 			<div class="bg-hover">
 				<div class="header">
-					<h1>LEVEL YOUR PLANET</h1>
+					<h1>LEAVE YOUR PLANET</h1>
 					<div class="score" id="score">
 						<div class="score__content" id="level">
 							<div class="score__label">level</div>
@@ -55,7 +69,7 @@
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
 		<script src="https://cdn.bootcss.com/three.js/104/three.min.js"></script>
-		<script src="../src/js/level/level1-fly.js" type="text/javascript"></script>
+		<script src="../src/js/level/level1-fly/level1-fly.js" type="text/javascript"></script>
 
 		<!----------- 悬浮窗 ----------->
 		<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -65,7 +79,7 @@
 			new jBox('Mouse', {
 			  attach: '#Tooltip-1',
 			  position: {x: 'right', y: 'bottom'},
-			  content: 'Source code on github.',
+			  content: 'Use microphone to control your plane.',
 			});
 			new jBox('Mouse', {
 			  attach: '#Tooltip-2',
