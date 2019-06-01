@@ -844,5 +844,4 @@ function init(event){
   loop();
 }
 
-
 window.addEventListener('load', init, false);

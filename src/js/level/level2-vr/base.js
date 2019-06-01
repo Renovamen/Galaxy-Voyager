@@ -1,14 +1,6 @@
-// Namespace
 var MG = {};
 
-//==============================================================================
-// Constants
-//==============================================================================
-
 NAMESPACE_SVG   = 'http://www.w3.org/2000/svg';
-NAMESPACE_XLINK = 'http://www.w3.org/1999/xlink';
-
-//
 
 MG.BARRIERS_ROOT_ELEMENT_ID  = 'barriers';
 MG.HUD_ROOT_ELEMENT_ID       = 'hud';

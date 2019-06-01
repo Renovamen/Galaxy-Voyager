@@ -38,7 +38,6 @@ MG.tunnelWall1 = (function (rootNode) {
 
                 mSegments[i].setAttribute('fill', 'url(#tunnel-wall-segment-fade-gradient)');
 
-
                 rootNode.appendChild(mSegments[i]) ;
             }
 
@@ -68,9 +67,6 @@ MG.tunnelWall1 = (function (rootNode) {
                 mSegments[i].setAttribute('transform', 'rotate(' + segmentTheta + ') '
                                                      + 'scale(' + scale_x_ + ',' + scale_y_ + ') '
                                                      + 'skewY(' + skew + ')' );
-
-
-
             }
         }
     }

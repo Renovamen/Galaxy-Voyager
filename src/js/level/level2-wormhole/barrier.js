@@ -17,8 +17,6 @@ MG.BarrierType = {
 
 MG.NUM_RANDOM_BARRIERS = 6;
 
-
-
 /* TODO find nicer way of initalising MG.BARRIER_PATH_IDS */
 MG.BARRIER_PATH_IDS = {}
 MG.BARRIER_PATH_IDS[MG.BarrierType.RANDOM] = '';
@@ -159,7 +157,4 @@ MG.Barrier = function (type) {
     this.getRootNode = function () {
         return mRootNode;
     };
-
-
-
 };

@@ -10,7 +10,7 @@ MG.hud = (function () {
         init: function () {
             mRootNode = document.getElementById('hud');
 
-            // ----------------------------------------------------------- Radar
+            // ---------------- Radar ----------------
 
             mRadar = (function () {
                 var mMissilePositionDot = document.getElementById('hud-radar-scope-missile');
@@ -52,7 +52,7 @@ MG.hud = (function () {
 
 
 
-            // ----------------------------------------------------- Speedometer
+            // ---------------- Speedometer ----------------
 
             mSpeedometer = (function () {
                 var mBarNode = document.getElementById('hud-speedometer-bar');
@@ -75,7 +75,7 @@ MG.hud = (function () {
                 };
             } ());
 
-            // ---------------------------------------------- Progress Indicator
+            // ---------------- Progress Indicator ----------------
             mProgressIndicator = (function () {
                 var mProgressMarkNode = document.getElementById('hud-progress-indicator-progress');
                 var mBestProgressMarkNode = document.getElementById('hud-progress-indicator-best-progress');

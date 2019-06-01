@@ -27,7 +27,6 @@ MG.banner = (function () {
             textBoxNode.appendChild(mTextNode);
 
             mRootNode.setAttribute('visibility', 'visible');
-
         },
 
         update: function (dt) {
@@ -63,7 +62,6 @@ MG.banner = (function () {
         },
 
         show: function (newTitle, newText) {
-
             mTitle = String(newTitle);
             mText = String(newText);
             mState = BannerState.MESSAGE_QUEUED;
@@ -71,9 +69,6 @@ MG.banner = (function () {
 
         isFullyVisible: function () {
             return mVisibility === 1;
-        }
-        
+        }    
     };
 }());
-
-

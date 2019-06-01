@@ -7,7 +7,6 @@ MG.tunnelWall = (function (rootNode) {
     var GRADIENT_START = MG.LINE_OF_SIGHT;
     var GRADIENT_STOP  = GRADIENT_START - MG.BARRIER_SPACING;
 
-
     var mTheta = 0;
 
     var mSegments = [];
@@ -38,7 +37,6 @@ MG.tunnelWall = (function (rootNode) {
 
                 mSegments[i].setAttribute('fill', 'url(#tunnel-wall-segment-fade-gradient)');
 
-
                 rootNode.appendChild(mSegments[i]) ;
             }
 
@@ -68,9 +66,6 @@ MG.tunnelWall = (function (rootNode) {
                 mSegments[i].setAttribute('transform', 'rotate(' + segmentTheta + ') '
                                                      + 'scale(' + scale_x_ + ',' + scale_y_ + ') '
                                                      + 'skewY(' + skew + ')' );
-
-
-
             }
         }
     }

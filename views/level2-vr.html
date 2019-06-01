@@ -5,12 +5,20 @@
   <title>Galaxy Voyager | Level #2: Wormhole - VR</title>
   <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
   <link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="../src/css/level2-wormhole.css" rel="stylesheet" >
 </head>
 <body>
+  <!------------ 返回一般模式 ------------>
+  <div class="navbar" style="z-index: 2; position: absolute; margin: 10px">
+    <a href="level2.html">
+      <i class="fa fa-tripadvisor fa-2x" style="color: #fff"></i>
+    </a>
+  </div>
+
   <!------------ 游戏 ------------>
   <div class="bg" style="background-image: url(../src/img/level/level2/vr-bg.jpg)">
-      <div class="bg-holder">
+    <div class="bg-holder">
       <svg
         baseProfile="full"
         xmlns="http://www.w3.org/2000/svg"
@@ -261,29 +269,6 @@
         <!------------ FOG ------------>
         <rect id="fog" width="100%" height="100%" fill="white" opacity="1" />
       
-        <!------------ BANNER ------------>
-        <svg id="banner" width="130%" height="100%" 
-            preserveAspectRatio="xMaxYMid meet"
-            viewBox="0 0 0.01 1" overflow="visible" visibility="hidden">
-
-          <rect x="-0.1" y="0.45" 
-                width="6" height="0.2"
-                fill="#000"
-                opacity="0.95"
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-width="0.005">
-          </rect>
-      
-          <g transform="translate(-0.05,0.54) scale(0.004,0.004)">
-            <text id="banner-title" fill="#fff" ></text>
-          </g>
-          <g transform="translate(0.25,0.6) scale(0.0025,0.0025)">
-            <text id="banner-text" fill="#ccc" ></text>
-          </g>
-        </svg>
-      
-      
         <defs>
           <!--== BARRIER PATHS ========================================================-->
           <path
@@ -460,7 +445,6 @@
   <script type="text/javascript" src="../lib/2D.js"></script>
   <script type="text/javascript" src="../lib/Path.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/base.js"></script>
-  <script type="text/javascript" src="../src/js/level/level2-vr/util.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/missile.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/wall1.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/wall2.js"></script>
@@ -469,7 +453,6 @@
   <script type="text/javascript" src="../src/js/level/level2-vr/barrierQueue2.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/game.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/hud.js"></script>
-  <script type="text/javascript" src="../src/js/level/level2-vr/banner.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/fog.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/main.js"></script>
 </body>

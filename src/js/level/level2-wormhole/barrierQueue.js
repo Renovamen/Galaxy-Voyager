@@ -35,11 +35,8 @@ MG.barrierQueue = (function () {
                 if (!barrier.isInitialised()) {
                     barrier.init();
 
-                    if (i > 0) {
-                        mRootNode.insertBefore(barrier.getRootNode(), mBarrierQueue[i-1].getRootNode());
-                    } else {
-                        mRootNode.appendChild(barrier.getRootNode());
-                    }
+                    if (i > 0) mRootNode.insertBefore(barrier.getRootNode(), mBarrierQueue[i-1].getRootNode());
+                    else mRootNode.appendChild(barrier.getRootNode());
                 }
             }
 
@@ -103,6 +100,3 @@ MG.barrierQueue = (function () {
         }
     };
 }());
-
-
-

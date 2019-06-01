@@ -3,7 +3,6 @@ MG.hud = (function () {
 
     var mRadar;
     var mSpeedometer;
-    var mLevelIndicator;
     var mProgressIndicator;
 
     return {

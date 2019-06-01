@@ -1,4 +1,3 @@
-
 MG.BarrierType = {
     RANDOM: 'random',
 
@@ -159,7 +158,4 @@ MG.Barrier = function (type) {
     this.getRootNode = function () {
         return mRootNode;
     };
-
-
-
 };
