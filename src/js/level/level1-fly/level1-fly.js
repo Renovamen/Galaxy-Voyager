@@ -14,9 +14,7 @@ var Colors = {
 
 // GAME VARIABLES
 var game;
-var deltaTime = 0;
-var newTime = new Date().getTime();
-var oldTime = new Date().getTime();
+var deltaTime = 67;
 var ennemiesPool = [];
 var particlesPool = [];
 var particlesInUse = [];
@@ -649,10 +647,6 @@ function createParticles(){
 }
 
 function loop(){
-
-  newTime = new Date().getTime();
-  deltaTime = newTime-oldTime;
-  oldTime = newTime;
 
   if (game.status=="playing"){
 

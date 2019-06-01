@@ -277,12 +277,12 @@ meter_test.on('ready', function (meter_test, sources) {
 
 // 测量分贝大小
 meter_test.on('sample', function (dB, percent, level) {
-	dbBar.style.width = (percent * 100) + '%';
-	dbValue.innerHTML = Math.floor(percent * 100) + '%';
+	dbBar.style.width = 2 * (percent * 100) + '%';
+	dbValue.innerHTML = Math.floor(2 * percent * 100) + '%';
 
-	console.log(percent * 100)
+	console.log(2 * percent * 100)
 
-	mousePos = { x: mousePos.x, y: percent * 100 - 10 }
+	mousePos = { x: mousePos.x, y: (percent * 100 - 10) / 2 }
 });
 
 // 开启语音控制后，显示分贝条
