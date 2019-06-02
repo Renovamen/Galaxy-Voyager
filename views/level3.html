@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Galaxy Escape: Bridge</title>
+    <link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/jBox/0.4.9/jBox.min.css" rel="stylesheet">
+    <link href="../src/css/navbar.css" rel="stylesheet">
+    <link href="../src/css/float-window.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <!------------ 导航菜单 ------------>
+    <div class="navbar">
+      <p>Menu</p>
+        <ul class="menu">
+            <li id="Tooltip-1"><a href="https://github.com/Renovamen/Galaxy-Escape" target="_blank"><i class="fa fa-github fa-2x"></i></a></li>
+            <li id="Tooltip-2"><a href="../"><i class="fa fa-fort-awesome fa-2x"></i></a></li>
+            <li id="Tooltip-3"><a href="choose-level.html"><i class="fa fa-empire fa-2x"></i></a></li>
+            <li id="Tooltip-4"><a href="#"><i class="fa fa-info fa-2x"></i></a></li>
+        </ul>
+    </div>
+    
+    <!------------ 游戏 ------------>
+    <script src="https://cdn.bootcss.com/tween.js/r14/Tween.min.js"></script>
+    <script src="https://cdn.bootcss.com/lodash.js/4.17.5/lodash.min.js"></script>
+    <script src="https://cdn.bootcss.com/three.js/104/three.min.js"></script>
+    <script src="../lib/ColladaLoader.js"></script>
+    <script src="../lib/MTLLoader.js"></script>
+    <script src="../lib/OBJLoader.js"></script>
+    <script src="../lib/nova.js"></script>
+    <script src="../src/js/Hocus.js"></script>
+    <script src="../src/js/level/level3-bridge.js"></script>
+    <script>
+      class ActonGroup {
+        constructor() {
+          this.actions = [];
+        }
+        start() {
+          for ( let item of this.actions ) {
+            item.start();
+          }
+        }
+        stop() {
+          for ( let item of this.actions ) {
+            item.stop();
+          }
+        }
+      }
+
+      let app = new NOVA.App();
+      let size = app.getWorldHeight() / 20;
+      let level = new HOCUS.GameLevel( app, 0x1f3b63, map, {
+        blockSize: size,
+        moveSpeed: 300
+      } );
+      app.world = level;
+      
+      // 背景图片
+      let bg_loader = new THREE.TextureLoader();
+      bg_loader.load('../src/img/level/level3/bg.jpg' , function(texture)
+      {
+        level.scene.background = texture;  
+      });
+
+      let charactor;
+
+      app.logicLoop.add( () => {
+        TWEEN.update();
+      } );
+
+      loadKey();
+      loadMusic();
+
+      function loadMusic() {
+        let audioListener = new THREE.AudioListener();
+        level.camera.add( audioListener );
+        let bgm = new THREE.Audio( audioListener );
+        let winSound = new THREE.Audio( audioListener );
+
+        level.scene.add( bgm );
+        level.scene.add( winSound );
+        let loader = new THREE.AudioLoader();
+        loader.load(
+          '../src/audio/bgm.mp3',
+          ( audioBuffer ) => {
+            bgm.setBuffer( audioBuffer );
+            bgm.play();
+            bgm.setLoop( true );
+          }
+        );
+        loader.load(
+          '../src/audio/win.mp3',
+          ( audioBuffer ) => {
+            winSound.setBuffer( audioBuffer );
+            level.winSound = winSound;
+          }
+        );
+      }
+
+      function loadKey() {
+        var mtlLoader = new THREE.MTLLoader( level.loaderFactory.manager );
+        mtlLoader.setPath( '../src/models/key/' );
+        mtlLoader.load( 'key.mtl', ( materials ) => {
+          materials.preload();
+          var objLoader = new THREE.OBJLoader();
+          objLoader.setMaterials( materials );
+          objLoader.setPath( '../src/models/key/' );
+          objLoader.load( 'key.obj', ( obj ) => {
+            level.meshFactory.addUserObjectCreator( "key", ( item, useless, container ) => {
+              let mesh = obj.children[ 0 ].clone();
+              mesh.scale.set( item.sx || 1, item.sy || 1, item.sz || 1 );
+              mesh.position.set( item.x * size || 0, item.y * size || 0, item.z * size || 0 );
+              mesh.rotation.set( item.rx || 0, item.ry || 0, item.rz || 0 );
+              container.add( mesh );
+              return mesh;
+            } );
+          } );
+        } );
+      }
+
+      let loader = new THREE.ColladaLoader( level.loaderFactory.manager );
+      loader.load( '../src/models/cat.dae', function( collada ) {
+        elf = collada.scene;
+        //elf.rotation.y = Math.PI;
+        charactor = new HOCUS.Charactor( level, {
+          model: elf,
+          scale: {
+            x: 0.1,
+            y: 0.1,
+            z: 0.1
+          }
+        } );
+
+        createAnimation('walk');
+        createAnimation('idle', () => {
+          charactor.play( 'idle' );
+          level.setCharactor( charactor );
+        } );
+        createAnimation('ladder');
+        for ( let mesh of elf.children ) {
+          if ( mesh.material ) mesh.material.shininess = 0;
+        }
+      } );
+
+      function createAnimation(id, callback) {
+        let actionGroup = new ActonGroup();
+        charactor.actions[ id ] = actionGroup;
+        if ( callback ) callback();
+      }
+    </script>
+
+
+    <!----------- 悬浮窗 ----------->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jBox/0.4.9/jBox.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        new jBox('Mouse', {
+          attach: '#Tooltip-1',
+          position: {x: 'right', y: 'bottom'},
+          content: 'Source Code on Github',
+        });
+        new jBox('Mouse', {
+          attach: '#Tooltip-2',
+          position: {x: 'right', y: 'bottom'},
+          content: 'Go Back to Homepage'
+        });
+        new jBox('Mouse', {
+          attach: '#Tooltip-3',
+          position: {x: 'right', y: 'bottom'},
+          content: 'Choose another Level'
+        });
+        new jBox('Mouse', {
+          attach: '#Tooltip-4',
+          position: {x: 'right', y: 'bottom'},
+          content: 'Tips: Try turning the knob, and remember: cats are the kings of universe.'
+        });
+      });
+    </script>
+
+  </body>
+</html>

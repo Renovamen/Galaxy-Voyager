@@ -2,47 +2,85 @@
 <html lang="zh">
 <head>
 	<meta charset="UTF-8">
+	<title>Galaxy Escape: Choose Level</title>
+  	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:300,400' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="../src/css/choose-level.css">
 </head>
 <body>
-	<div class="wrapper">
-		<div class="bg-holder">
-			<a href="../" class="btn">GO BACK</a> 	
-			<h1 class="title">CHOOSE A VOYAGE<h1>
-			<div class="cols">
-				<a href="level1.html" class="col">
-					<div class="container">
-						<div class="front" style="background-image: url(../src/img/choose-level/fly.jpg)">
-							<div class="inner">
-								<p>VOYAGE #1</p>
-								<span>FLY</span>
+	<a href="../" class="btn">GO BACK</a> 	
+	<div class="main">
+		<h1 class="title">CHOOSE LEVEL<h1>
+		<div class="navigation-circle">
+			<div class="navigation-circle__inner">
+				<svg class="navigation-circle-svg navigation-circle-svg--opaque" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewbox="0 0 320 320" style="enable-background:new 0 0 320 320;">
+					<circle cx="160" cy="160" r="158" fill="none" stroke-width="1" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" style="stroke-dashoffset:0;stroke-dasharray:none;"></circle>
+				</svg>
+				<svg class="navigation-circle-svg navigation-circle-svg--mask" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewbox="0 0 320 320" style="enable-background:new 0 0 320 320;">
+					<circle id="mask-circle" cx="160" cy="160" r="158" fill="none" stroke-width="2" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" style="stroke-dasharray:1005.3088px;"></circle>
+				</svg>
+				<ul class="navigation-circle__list">
+					<li class="navigation-circle-list-item">
+						<a class="navigation-circle-list-item__point" onclick="onClick(1)" onmouseenter="calculateOffset(1)" onMouseLeave="onMouseLeave()">
+							<div class="navigation-circle-list-item__meta">
+								<h3 class="navigation-circle-list-item__title">LEVEL #1: FLY</h3>
+								<h4 class="navigation-circle-list-item__subtitle">You should fly away from your planet first, of course.</h4>
 							</div>
-						</div>
-						<div class="back">
-							<div class="inner">
-								<p>You should fly away from your planet first, of course.</p>
+						</a>
+					</li>
+					<li class="navigation-circle-list-item">
+						<a class="navigation-circle-list-item__point" onclick="onClick(2)" onmouseenter="calculateOffset(2)" onMouseLeave="onMouseLeave()">
+							<div class="navigation-circle-list-item__meta">
+								<h3 class="navigation-circle-list-item__title">LEVEL #2: Wormhole</h3>
+								<h4 class="navigation-circle-list-item__subtitle">Do you believe in passing through time and space?</h4>
 							</div>
-						</div>
-					</div>
-				</a>
-				<a href="level2.html" class="col">
-					<div class="container">
-						<div class="front" style="background-image:url(../src/img/choose-level/rocket.jpg)">
-							<div class="inner">
-								<p>VOYAGE #2</p>
-								<span>WORMHOLE</span>
+						</a>
+					</li>
+					<li class="navigation-circle-list-item">
+						<a class="navigation-circle-list-item__point" onclick="onClick(3)" onmouseenter="calculateOffset(3)" onMouseLeave="onMouseLeave()">
+							<div class="navigation-circle-list-item__meta">
+								<h3 class="navigation-circle-list-item__title">LEVEL #3: BRIDGE</h3>
+								<h4 class="navigation-circle-list-item__subtitle">Don't cross the bridge till you come to it.</h4>
 							</div>
-						</div>
-						<div class="back">
-							<div class="inner">
-								<p>Do you believe in passing through time and space?</p>
+						</a>
+					</li>
+					<li class="navigation-circle-list-item">
+						<a class="navigation-circle-list-item__point" onclick="onClick(4)" onmouseenter="calculateOffset(4)" onMouseLeave="onMouseLeave()">
+							<div class="navigation-circle-list-item__meta">
+								<h3 class="navigation-circle-list-item__title">LEVEL #4: LAB</h3>
+								<h4 class="navigation-circle-list-item__subtitle">A laboratory with peculiar light.</h4>
 							</div>
-						</div>
-					</div>
-				</a>	
+						</a>
+					</li>
+					<li class="navigation-circle-list-item">
+						<a class="navigation-circle-list-item__point" onclick="onClick(5)" onmouseenter="calculateOffset(5)" onMouseLeave="onMouseLeave()">
+							<div class="navigation-circle-list-item__meta">
+								<h3 class="navigation-circle-list-item__title">LEVEL #5</h3>
+								<h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+							</div>
+						</a>
+					</li>
+					<li class="navigation-circle-list-item">
+						<a class="navigation-circle-list-item__point" onclick="onClick(6)" onmouseenter="calculateOffset(6)" onMouseLeave="onMouseLeave()">
+							<div class="navigation-circle-list-item__meta">
+								<h3 class="navigation-circle-list-item__title">LEVEL #6</h3>
+								<h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+							</div>
+						</a>
+					</li>
+					<li class="navigation-circle-list-item">
+						<a class="navigation-circle-list-item__point" onclick="onClick(7)" onmouseenter="calculateOffset(7)" onMouseLeave="onMouseLeave()">
+							<div class="navigation-circle-list-item__meta">
+								<h3 class="navigation-circle-list-item__title">LEVEL #7</h3>
+								<h4 class="navigation-circle-list-item__subtitle">It just goes round and round</h4>
+							</div>
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
+	
+	<script  src="../src/js/choose-level.js"></script>
 </body>
 </html>

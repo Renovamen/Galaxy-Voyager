@@ -40,6 +40,24 @@ VR:
 
 &nbsp;
 
+### Voyage #3: Bridge & Voyage #4: Lab
+
+Just like Monument Valley (Based on [MonumentValley](https://github.com/HypnosNova/MonumentValley)).
+
+Screenshot:
+
+- Voyage #3: Bridge:
+
+  ![screenshot-bridge](screenshots/bridge.jpg)
+
+  
+
+- Voyage #4: Lab:
+
+  ![screenshot-lab](screenshots/lab.jpg)
+
+&nbsp;
+
 ## Run Locally
 
 A local server should be built before running this game locally. There are several ways to build a local server, for example:
@@ -58,13 +76,10 @@ Then, open  http://127.0.0.1:8080.
 
 - [three.js](https://github.com/mrdoob/three.js/): JavaScript 3D library, using for building character and environment in *Voyage #1: Fly*.
 - [TweenMax](https://www.tweenmax.com.cn/): JavaScript animation library, using for making animation of the plane in *Voyage #1: Fly*.
-
 - [Path.js & 2D.js](http://www.kevlindev.com/gui/shapes/path/index.htm): SVG geometry library, using for environment in *Voyage #2: Wormhole*.
-
 - [ThreeCSG](https://github.com/chandlerprall/ThreeCSG): CSG plugin for three.js, using for special effects of title in homepage.
 - [jBox](https://github.com/StephanWagner/jBox): A jQuery plugin that makes it easy to create customizable tooltips and more.
-
+- [nova.js](https://github.com/HypnosNova/Nova): A 3D framework based on three.js, using for building environment in *Voyage #3: Bridge* and *Voyage #4: Lab*.
 - [Font Awesome](https://github.com/FortAwesome/Font-Awesome): A icon set.
 - [jQuery](https://github.com/jquery/jquery): A JavaScript library.
-
 - [Bootstrap](https://github.com/twbs/bootstrap): A front-end component library.
