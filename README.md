@@ -18,13 +18,25 @@ Fly a spaceship to eat energy coins and avoid crashing antimatter (Based on [The
 
 [Play it](https://renovamen.github.io/Galaxy-Voyager/views/level1.html)
 
+Screenshot:
 
+![screenshot-fly](screenshots/fly.jpg)
 
-### Voyage #1: Wormhole
+&nbsp;
+
+### Voyage #2: Wormhole
 
 Fly a spaceship to past a sequence of rotating barriers and avoid crashing (Based on [missile-game](https://github.com/bwhmather/missile-game)). VR is supported if you have a Google Cardboard or other similar devices. According to my test (iPhone 7 & Essential Phone), VR experience on Firefox is the best.
 
 Play it: [Normal](https://renovamen.github.io/Galaxy-Voyager/views/level2.html), [VR](https://renovamen.github.io/Galaxy-Voyager/views/level2-vr.html)
+
+Screenshot:
+
+![screenshot-wormhole](screenshots/wormhole.jpg)
+
+VR:
+
+![screenshot-wormhole-vr](screenshots/wormhole-vr.jpg)
 
 &nbsp;
 
@@ -52,7 +64,7 @@ Then, open  http://127.0.0.1:8080.
 - [ThreeCSG](https://github.com/chandlerprall/ThreeCSG): CSG plugin for three.js, using for special effects of title in homepage.
 - [jBox](https://github.com/StephanWagner/jBox): A jQuery plugin that makes it easy to create customizable tooltips and more.
 
-- [Font Awesome](https://github.com/FortAwesome/Font-Awesome)
-- [jQuery](https://github.com/jquery/jquery)
+- [Font Awesome](https://github.com/FortAwesome/Font-Awesome): A icon set.
+- [jQuery](https://github.com/jquery/jquery): A JavaScript library.
 
-- [Bootstrap](https://github.com/twbs/bootstrap)
+- [Bootstrap](https://github.com/twbs/bootstrap): A front-end component library.
