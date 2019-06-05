@@ -1,9 +1,9 @@
-MG.missile = (function () {
+WHVR.missile = (function () {
 
     var ACCELERATION_TIME_CONSTANT = 1.0;
     var DRIFT_DAMPING = 0.25;
 
-    var MAX_RADIUS = 0.8*MG.TUNNEL_RADIUS;
+    var MAX_RADIUS = 0.8*WHVR.TUNNEL_RADIUS;
 
     var MissileState = {
         CRASHED:   'crashed',
@@ -66,8 +66,8 @@ MG.missile = (function () {
                     if (mDriftCounter < 0) {
                         mDriftCounter = 1.1 + 0.9*Math.random();
 
-                        mDriftVelX = (MG.TUNNEL_RADIUS*(Math.random()-0.5) - mTargetX)/1.5;
-                        mDriftVelY = (MG.TUNNEL_RADIUS*(Math.random()-0.5) - mTargetY)/1.5;
+                        mDriftVelX = (WHVR.TUNNEL_RADIUS * (Math.random()-0.5) - mTargetX) / 1.5;
+                        mDriftVelY = (WHVR.TUNNEL_RADIUS * (Math.random()-0.5) - mTargetY) / 1.5;
                     }
 
                     /* TODO Smooth */
@@ -96,15 +96,12 @@ MG.missile = (function () {
             mX = (radius === 0) ? 0 : mX*newRadius/radius;
             mY = (radius === 0) ? 0 : mY*newRadius/radius;
 
-
-
             if (mState === MissileState.CRASHED) {
                 /* If the missile has crashed, it will bounce backwards coming
                 to rest near the location of the previous barrier. */
-                mVelocity += dt*MG.BARRIER_SPACING*mVelocity/(mOffset - MG.BARRIER_SPACING);
-            } else {
-                mVelocity += dt*(mTargetVelocity - mVelocity)/ACCELERATION_TIME_CONSTANT;
-            }
+                mVelocity += dt * WHVR.BARRIER_SPACING * mVelocity / (mOffset - WHVR.BARRIER_SPACING);
+            } 
+            else mVelocity += dt * (mTargetVelocity - mVelocity) / ACCELERATION_TIME_CONSTANT;
 
             mOffset -= mVelocity * dt;
         },
@@ -151,7 +148,7 @@ MG.missile = (function () {
 
 
         onBarrierPassed: function () {
-            mOffset += MG.BARRIER_SPACING;
+            mOffset += WHVR.BARRIER_SPACING;
         },
 
         onCrash: function () {

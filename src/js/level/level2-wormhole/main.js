@@ -1,26 +1,26 @@
-MG.init = function () {
-    MG.fog.init();
-    MG.banner.init();
-    MG.game.init();
-    MG.hud.init();
+WH.init = function () {
+    WH.fog.init();
+    WH.banner.init();
+    WH.game.init();
+    WH.hud.init();
 
     document.addEventListener('mousemove', function(evt){
-            MG.game.onMouseMove(evt.clientX, evt.clientY);
-        }, false);
+        WH.game.onMouseMove(evt.clientX, evt.clientY);
+    }, false);
 
-    window.addEventListener('mousedown', MG.game.onMouseClick, false);
+    window.addEventListener('mousedown', WH.game.onMouseClick, false);
 
     var update = function (dt) {
-        MG.fog.update(dt);
-        MG.game.update(dt);
-        MG.hud.update(dt);
-        MG.banner.update(dt);
+        WH.fog.update(dt);
+        WH.game.update(dt);
+        WH.hud.update(dt);
+        WH.banner.update(dt);
 
 
-        MG.fog.updateDOM();
-        MG.game.updateDOM();
-        MG.hud.updateDOM();
-        MG.banner.updateDOM();
+        WH.fog.updateDOM();
+        WH.game.updateDOM();
+        WH.hud.updateDOM();
+        WH.banner.updateDOM();
     }
 
     var lastTick = 0;
@@ -36,39 +36,28 @@ MG.init = function () {
 
         // Some browsers don't pass in a time.  If `thisTick` isn't set for
         //  more than a few frames fall back to `setTimeout`
-        if (!thisTick) {
-            zeroCounter += 1;
-        } else {
-            zeroCounter = 0;
-        }
-        if (zeroCounter > 10) {
-            useFallback = true;
-        }
+        if (!thisTick) zeroCounter += 1;
+        else zeroCounter = 0;
+        
+        if (zeroCounter > 10) useFallback = true;
 
         thisTick = thisTick || 0;
-        if (useFallback) {
-            dt = 1/30;
-        } else {
-            var dt = (thisTick - lastTick)/1000;
-        }
+        if (useFallback) dt = 1/30;
+        else var dt = (thisTick - lastTick) / 1000;
+        
         // pretend that the frame rate is actually higher if it drops below
         // 10fps in order to avoid wierdness
-        if (dt > 1/10) {
-            dt = 1/10;
-        }
+        if (dt > 1/10) dt = 1/10;
 
         lastTick = thisTick;
 
         update(dt);
 
-        if (useFallback) {
-            window.setTimeout(mainLoop, 1000 / 30);
-        } else {
-            window.requestAnimationFrame(mainLoop);
-        }
+        if (useFallback) window.setTimeout(mainLoop, 1000 / 30);
+        else window.requestAnimationFrame(mainLoop);
     }
 
     mainLoop();
 }
 
-MG.init();
+WH.init();

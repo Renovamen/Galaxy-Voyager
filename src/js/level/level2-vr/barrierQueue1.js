@@ -1,4 +1,4 @@
-MG.barrierQueue1 = (function () {
+WHVR.barrierQueue1 = (function () {
     var mBarrierQueue = [];
     var mRootNode;
 
@@ -43,7 +43,7 @@ MG.barrierQueue1 = (function () {
             var z = 0.0;
             for (i = 0; i < mBarrierQueue.length; i++) {
                 mBarrierQueue[i].updateDOM(missileX, missileY, z + missileOffset);
-                z += MG.BARRIER_SPACING;
+                z += WHVR.BARRIER_SPACING;
             }
         },
 
@@ -53,7 +53,7 @@ MG.barrierQueue1 = (function () {
          */
         pushBarrier: function (type) {
             /* Create a new barrier but do not initialise it */
-            var barrier = new MG.Barrier(type);
+            var barrier = new WHVR.Barrier(type);
 
             /* Add the barrier to the internal list */
             mBarrierQueue[mBarrierQueue.length] = barrier;

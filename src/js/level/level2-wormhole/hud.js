@@ -1,4 +1,4 @@
-MG.hud = (function () {
+WH.hud = (function () {
     var mRootNode;
 
     var mRadar;
@@ -21,8 +21,8 @@ MG.hud = (function () {
 
                 return {
                     update: function (dt) {
-                        mMissileTarget = MG.missile.getTarget();
-                        mMissilePosition = MG.missile.getPosition();
+                        mMissileTarget = WH.missile.getTarget();
+                        mMissilePosition = WH.missile.getPosition();
                         // PASS
                     },
                     updateDOM: function () {
@@ -31,18 +31,18 @@ MG.hud = (function () {
 
                         /* Set the position of the dot indicating the intended target of the missile */
                         x = scopeRadius + 0.95 * scopeRadius * mMissileTarget.x
-                                               / MG.TUNNEL_RADIUS;
+                                               / WH.TUNNEL_RADIUS;
                         y = scopeRadius + 0.95 * scopeRadius * mMissileTarget.y
-                                               / MG.TUNNEL_RADIUS;
+                                               / WH.TUNNEL_RADIUS;
 
                         mMissileTargetDot.setAttribute('cx', String(x));
                         mMissileTargetDot.setAttribute('cy', String(y));
 
                         /* Set the position of the dot indicating the actual position of the missile */
                         x = scopeRadius + 0.95 * scopeRadius * mMissilePosition.x
-                                               / MG.TUNNEL_RADIUS;
+                                               / WH.TUNNEL_RADIUS;
                         y = scopeRadius + 0.95 * scopeRadius * mMissilePosition.y
-                                               / MG.TUNNEL_RADIUS;
+                                               / WH.TUNNEL_RADIUS;
 
                         mMissilePositionDot.setAttribute('cx', String(x));
                         mMissilePositionDot.setAttribute('cy', String(y));
@@ -64,7 +64,7 @@ MG.hud = (function () {
 
                 return {
                     update: function (dt) {
-                        mSpeed = MG.missile.getVelocity();
+                        mSpeed = WH.missile.getVelocity();
                     },
                     updateDOM: function () {
                         mTextNode.data = mSpeed.toFixed(0);
@@ -85,8 +85,8 @@ MG.hud = (function () {
 
                 return {
                     update: function (dt) {
-                        mProgress = MG.game.getProgress();
-                        mBestProgress = MG.game.getBestProgress();
+                        mProgress = WH.game.getProgress();
+                        mBestProgress = WH.game.getBestProgress();
                     },
 
                     updateDOM: function () {

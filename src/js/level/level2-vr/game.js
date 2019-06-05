@@ -1,4 +1,4 @@
-MG.game = (function () {
+WHVR.game = (function () {
 
     /** Constants **/
     var GameState = {
@@ -28,7 +28,7 @@ MG.game = (function () {
     var mProgress = 0.0;
     var mBestProgress = 0.0;
 
-    var cBarrier = MG.BarrierType.BARRIER_1;
+    var cBarrier = WHVR.BarrierType.BARRIER_1;
 
 //    XXX AUDIO XXX
 //    var NUM_WOOSH_INSTANCES = 3;
@@ -100,8 +100,8 @@ MG.game = (function () {
 
     var goWaitStartLevel = function () {
 
-        MG.missile.setAutopilot();
-        MG.missile.setVelocity(getPreLevelIdleVelocity(mLevel));
+        WHVR.missile.setAutopilot();
+        WHVR.missile.setVelocity(getPreLevelIdleVelocity(mLevel));
 
         if (mLevel === 0) {mLives = Infinity;}
 
@@ -117,20 +117,20 @@ MG.game = (function () {
         /* TODO should the start barrier be pushed here?
         If so, should all of the barriers for the entire level be pushed as well? */
         mRemainingBarriers = LEVEL_NUM_BARRIERS;
-        MG.barrierQueue1.pushBarrier(MG.BarrierType.START);
-        MG.barrierQueue2.pushBarrier(MG.BarrierType.START);
+        WHVR.barrierQueue1.pushBarrier(WHVR.BarrierType.START);
+        WHVR.barrierQueue2.pushBarrier(WHVR.BarrierType.START);
 
         mBarriersToPass = LEVEL_NUM_BARRIERS;
 
-        MG.missile.setManual();
+        WHVR.missile.setManual();
 
         mState = GameState.STARTING;
     }
 
     var goFinish = function () {
 
-        MG.missile.setAutopilot();
-        MG.missile.setVelocity(getPostLevelIdleVelocity(mLevel));
+        WHVR.missile.setAutopilot();
+        WHVR.missile.setVelocity(getPostLevelIdleVelocity(mLevel));
 
         mState = GameState.FINISHED;
 
@@ -148,7 +148,7 @@ MG.game = (function () {
         mState = GameState.CRASHED;
 
         setTimeout(function(){
-            MG.fog.fadeIn(function() {
+            WHVR.fog.fadeIn(function() {
                 if (mLives === 0) {
                     mLevel = 0;
                     mLives = STARTING_LIVES;
@@ -156,11 +156,11 @@ MG.game = (function () {
                 } 
                 else mLives--;
 
-                MG.missile.reset();
-                MG.barrierQueue1.reset();
-                MG.barrierQueue2.reset();
+                WHVR.missile.reset();
+                WHVR.barrierQueue1.reset();
+                WHVR.barrierQueue2.reset();
 
-                MG.fog.fadeOut();
+                WHVR.fog.fadeOut();
                 goWaitStartLevel();
             });
         },2000);
@@ -171,7 +171,7 @@ MG.game = (function () {
             var rootNode1 = document.getElementById('tunnel1');
             var rootNode2 = document.getElementById('tunnel2');
 
-            MG.missile.init();
+            WHVR.missile.init();
 
             var wallNode1;
             var wallNode2;
@@ -181,8 +181,8 @@ MG.game = (function () {
             wallNode2 = document.createElementNS(NAMESPACE_SVG, 'g');
             wallNode2.setAttribute('transform', 'scale(1,-1)');
 
-            MG.tunnelWall1.init(wallNode1);
-            MG.tunnelWall2.init(wallNode2);
+            WHVR.tunnelWall1.init(wallNode1);
+            WHVR.tunnelWall2.init(wallNode2);
 
             rootNode1.appendChild(wallNode1);
             rootNode2.appendChild(wallNode2);
@@ -195,8 +195,8 @@ MG.game = (function () {
             barrierQueueNode2 = document.createElementNS(NAMESPACE_SVG, 'g');
             barrierQueueNode2.setAttribute('transform', 'scale(1,-1)');
 
-            MG.barrierQueue1.init(barrierQueueNode1);
-            MG.barrierQueue2.init(barrierQueueNode2);
+            WHVR.barrierQueue1.init(barrierQueueNode1);
+            WHVR.barrierQueue2.init(barrierQueueNode2);
 
             rootNode1.appendChild(barrierQueueNode1);
             rootNode2.appendChild(barrierQueueNode2);
@@ -218,13 +218,13 @@ MG.game = (function () {
 
 
         update: function (dt) {
-            MG.missile.update(dt);    
-            MG.tunnelWall1.update(dt);
-            MG.tunnelWall2.update(dt);
-            MG.barrierQueue1.update(dt);    
-            MG.barrierQueue2.update(dt); 
+            WHVR.missile.update(dt);    
+            WHVR.tunnelWall1.update(dt);
+            WHVR.tunnelWall2.update(dt);
+            WHVR.barrierQueue1.update(dt);    
+            WHVR.barrierQueue2.update(dt); 
 //            XXX AUDIO XXX
-//            if (MG.missile.getOffset()/MG.missile.getVelocity() < 0.8 && mWooshPlaying === false && mState !== GameState.CRASHED) {
+//            if (WHVR.missile.getOffset()/WHVR.missile.getVelocity() < 0.8 && mWooshPlaying === false && mState !== GameState.CRASHED) {
 //                mWooshPlaying = true;
 ////                var woosh = document.getElementById('woosh-sound').cloneNode(true);
 ////                woosh.setAttribute('autoplay', 'autoplay');
@@ -236,20 +236,20 @@ MG.game = (function () {
 
 
             /* check whether the nearest barrier has been reached and whether the missile collides with it. */
-            if (!MG.barrierQueue1.isEmpty()) {
-                if (MG.missile.getOffset() < MG.MISSILE_LENGTH && !MG.missile.isCrashed()){
-                    var barrier = MG.barrierQueue1.nextBarrier();
+            if (!WHVR.barrierQueue1.isEmpty()) {
+                if (WHVR.missile.getOffset() < WHVR.MISSILE_LENGTH && !WHVR.missile.isCrashed()){
+                    var barrier = WHVR.barrierQueue1.nextBarrier();
 
-                    if (barrier.collides(MG.missile.getPosition().x, MG.missile.getPosition().y)) {
+                    if (barrier.collides(WHVR.missile.getPosition().x, WHVR.missile.getPosition().y)) {
                         // CRASH
-                        MG.missile.onCrash();
+                        WHVR.missile.onCrash();
                         goCrash();
                     } 
                     else {
                         // BARRIER PASSED
-                        MG.barrierQueue1.popBarrier();
-                        MG.barrierQueue2.popBarrier();
-                        MG.missile.onBarrierPassed();
+                        WHVR.barrierQueue1.popBarrier();
+                        WHVR.barrierQueue2.popBarrier();
+                        WHVR.missile.onBarrierPassed();
 
 //                        XXX AUDIO XXX
 //                        mWooshPlaying = false;
@@ -257,12 +257,12 @@ MG.game = (function () {
                         // TODO this block makes loads of assumptions about state
                         if (mState === GameState.RUNNING || mState === GameState.STARTING) {
                             switch(barrier.getType()) {
-                                case MG.BarrierType.FINISH:
+                                case WHVR.BarrierType.FINISH:
                                     goFinish();
                                     break;
-                                case MG.BarrierType.BLANK:
+                                case WHVR.BarrierType.BLANK:
                                     break;
-                                case MG.BarrierType.START:
+                                case WHVR.BarrierType.START:
                                     mState = GameState.RUNNING;
                                     // FALLTHROUGH
                                 default:
@@ -271,7 +271,7 @@ MG.game = (function () {
                                     var startVelocity = getLevelStartVelocity(mLevel);
                                     var finishVelocity = getLevelFinishVelocity(mLevel);
 
-                                    MG.missile.setVelocity(startVelocity
+                                    WHVR.missile.setVelocity(startVelocity
                                                             + (startVelocity - finishVelocity)
                                                             * (mBarriersToPass - LEVEL_NUM_BARRIERS)
                                                                 / LEVEL_NUM_BARRIERS);
@@ -285,8 +285,8 @@ MG.game = (function () {
         
             /* Pad the barrier queue with blank barriers so that there are barriers
             as far as can be seen. */
-            while (MG.barrierQueue1.numBarriers() < MG.LINE_OF_SIGHT/MG.BARRIER_SPACING) {
-                var type = MG.BarrierType.BLANK;
+            while (WHVR.barrierQueue1.numBarriers() < WHVR.LINE_OF_SIGHT/WHVR.BARRIER_SPACING) {
+                var type = WHVR.BarrierType.BLANK;
     
                 if (mState === GameState.RUNNING || mState === GameState.STARTING) {
                     mRemainingBarriers--;
@@ -294,44 +294,44 @@ MG.game = (function () {
 
                         switch(cBarrier)
                         {
-                            case MG.BarrierType.BARRIER_1:
-                                type = MG.BarrierType.BARRIER_1;
-                                cBarrier = MG.BarrierType.BARRIER_2;
+                            case WHVR.BarrierType.BARRIER_1:
+                                type = WHVR.BarrierType.BARRIER_1;
+                                cBarrier = WHVR.BarrierType.BARRIER_2;
                                 break;
-                            case MG.BarrierType.BARRIER_2:
-                                type = MG.BarrierType.BARRIER_2;
-                                cBarrier = MG.BarrierType.BARRIER_3;
+                            case WHVR.BarrierType.BARRIER_2:
+                                type = WHVR.BarrierType.BARRIER_2;
+                                cBarrier = WHVR.BarrierType.BARRIER_3;
                                 break;
-                            case MG.BarrierType.BARRIER_3:
-                                type = MG.BarrierType.BARRIER_3;
-                                cBarrier = MG.BarrierType.BARRIER_4;
+                            case WHVR.BarrierType.BARRIER_3:
+                                type = WHVR.BarrierType.BARRIER_3;
+                                cBarrier = WHVR.BarrierType.BARRIER_4;
                                 break;
-                            case MG.BarrierType.BARRIER_4:
-                                type = MG.BarrierType.BARRIER_4;
-                                cBarrier = MG.BarrierType.BARRIER_5;
+                            case WHVR.BarrierType.BARRIER_4:
+                                type = WHVR.BarrierType.BARRIER_4;
+                                cBarrier = WHVR.BarrierType.BARRIER_5;
                                 break;
-                            case MG.BarrierType.BARRIER_5:
-                                type = MG.BarrierType.BARRIER_5;
-                                cBarrier = MG.BarrierType.BARRIER_6;
+                            case WHVR.BarrierType.BARRIER_5:
+                                type = WHVR.BarrierType.BARRIER_5;
+                                cBarrier = WHVR.BarrierType.BARRIER_6;
                                 break;
-                            case MG.BarrierType.BARRIER_6:
-                                type = MG.BarrierType.BARRIER_6;
-                                cBarrier = MG.BarrierType.BARRIER_1;
+                            case WHVR.BarrierType.BARRIER_6:
+                                type = WHVR.BarrierType.BARRIER_6;
+                                cBarrier = WHVR.BarrierType.BARRIER_1;
                                 break;
                         }
                     } 
-                    else if (mRemainingBarriers === 0) type = MG.BarrierType.FINISH;
-                    else type = MG.BarrierType.BLANK;
+                    else if (mRemainingBarriers === 0) type = WHVR.BarrierType.FINISH;
+                    else type = WHVR.BarrierType.BLANK;
                 }
     
-                MG.barrierQueue1.pushBarrier(type);
-                MG.barrierQueue2.pushBarrier(type);
+                WHVR.barrierQueue1.pushBarrier(type);
+                WHVR.barrierQueue2.pushBarrier(type);
             }
 
             /* Update progress */
             switch (mState) {
                 case GameState.RUNNING:
-                    mProgress = 1 - (mBarriersToPass*MG.BARRIER_SPACING + MG.missile.getOffset())/(LEVEL_NUM_BARRIERS * MG.BARRIER_SPACING);
+                    mProgress = 1 - (mBarriersToPass*WHVR.BARRIER_SPACING + WHVR.missile.getOffset())/(LEVEL_NUM_BARRIERS * WHVR.BARRIER_SPACING);
                     mBestProgress = Math.max(mProgress, mBestProgress);
                     break;
                 case GameState.FINISHED:
@@ -348,13 +348,13 @@ MG.game = (function () {
         },
 
         updateDOM: function () {
-            var position = MG.missile.getPosition();
-            var offset = MG.missile.getOffset();
+            var position = WHVR.missile.getPosition();
+            var offset = WHVR.missile.getOffset();
 
-            MG.barrierQueue1.updateDOM(-position.x, -position.y, offset);
-            MG.tunnelWall1.updateDOM(-position.x, -position.y, offset);
-            MG.barrierQueue2.updateDOM(-position.x, -position.y, offset);
-            MG.tunnelWall2.updateDOM(-position.x, -position.y, offset);
+            WHVR.barrierQueue1.updateDOM(-position.x, -position.y, offset);
+            WHVR.tunnelWall1.updateDOM(-position.x, -position.y, offset);
+            WHVR.barrierQueue2.updateDOM(-position.x, -position.y, offset);
+            WHVR.tunnelWall2.updateDOM(-position.x, -position.y, offset);
         },
 
         deviceOrientationHandler: function(tiltLR, tiltFB, dir) {
@@ -1280,7 +1280,7 @@ MG.game = (function () {
             
             if((xval*xval) + (yval*yval) <= (90* 90))  
             {
-                MG.missile.setTarget(xval, yval);
+                WHVR.missile.setTarget(xval, yval);
             }
         },
 

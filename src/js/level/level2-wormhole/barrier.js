@@ -1,5 +1,4 @@
-
-MG.BarrierType = {
+WH.BarrierType = {
     RANDOM: 'random',
 
     BARRIER_1: 1,
@@ -15,32 +14,32 @@ MG.BarrierType = {
 };
 
 
-MG.NUM_RANDOM_BARRIERS = 6;
+WH.NUM_RANDOM_BARRIERS = 6;
 
-/* TODO find nicer way of initalising MG.BARRIER_PATH_IDS */
-MG.BARRIER_PATH_IDS = {}
-MG.BARRIER_PATH_IDS[MG.BarrierType.RANDOM] = '';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_1] = 'barrier-path-1';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_2] = 'barrier-path-2';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_3] = 'barrier-path-3';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_4] = 'barrier-path-4';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_5] = 'barrier-path-5';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_6] = 'barrier-path-6';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BLANK] = 'barrier-path-blank';
-MG.BARRIER_PATH_IDS[MG.BarrierType.START] = 'barrier-path-blank';
-MG.BARRIER_PATH_IDS[MG.BarrierType.FINISH] = 'barrier-path-finish';
+/* TODO find nicer way of initalising WH.BARRIER_PATH_IDS */
+WH.BARRIER_PATH_IDS = {}
+WH.BARRIER_PATH_IDS[WH.BarrierType.RANDOM] = '';
+WH.BARRIER_PATH_IDS[WH.BarrierType.BARRIER_1] = 'barrier-path-1';
+WH.BARRIER_PATH_IDS[WH.BarrierType.BARRIER_2] = 'barrier-path-2';
+WH.BARRIER_PATH_IDS[WH.BarrierType.BARRIER_3] = 'barrier-path-3';
+WH.BARRIER_PATH_IDS[WH.BarrierType.BARRIER_4] = 'barrier-path-4';
+WH.BARRIER_PATH_IDS[WH.BarrierType.BARRIER_5] = 'barrier-path-5';
+WH.BARRIER_PATH_IDS[WH.BarrierType.BARRIER_6] = 'barrier-path-6';
+WH.BARRIER_PATH_IDS[WH.BarrierType.BLANK] = 'barrier-path-blank';
+WH.BARRIER_PATH_IDS[WH.BarrierType.START] = 'barrier-path-blank';
+WH.BARRIER_PATH_IDS[WH.BarrierType.FINISH] = 'barrier-path-finish';
 
 
-MG.Barrier = function (type) {
-    if (type === undefined) {type = MG.BarrierType.RANDOM;}
+WH.Barrier = function (type) {
+    if (type === undefined) {type = WH.BarrierType.RANDOM;}
 
     var mIsInitialised = false;
 
     var mTheta = 0.0;
-    var mDTheta = 300.0*(0.5 - Math.random());
+    var mDTheta = 300.0 * (0.5 - Math.random());
 
-    var mIsRandom = (type === MG.BarrierType.RANDOM);
-    var mType = (type === MG.BarrierType.RANDOM) ? Math.ceil(MG.NUM_RANDOM_BARRIERS*Math.random()) : type;
+    var mIsRandom = (type === WH.BarrierType.RANDOM);
+    var mType = (type === WH.BarrierType.RANDOM) ? Math.ceil(WH.NUM_RANDOM_BARRIERS*Math.random()) : type;
 
     var mRootNode;
     var mFrontPath;
@@ -51,11 +50,11 @@ MG.Barrier = function (type) {
         mRootNode = document.createElementNS(NAMESPACE_SVG, 'g');
 
         /* The path representing the face nearest the camera */
-        mFrontPath = document.getElementById(MG.BARRIER_PATH_IDS[mType]).cloneNode(true);
+        mFrontPath = document.getElementById(WH.BARRIER_PATH_IDS[mType]).cloneNode(true);
         mFrontPath.setAttribute('class', 'barrier-path-front');
 
         /* The path partially obscured by the front path, added to give the illusion of thickness. */
-        mBackPath = document.getElementById(MG.BARRIER_PATH_IDS[mType]).cloneNode(true);
+        mBackPath = document.getElementById(WH.BARRIER_PATH_IDS[mType]).cloneNode(true);
         mBackPath.setAttribute('class', 'barrier-path-back');
 
         mRootNode.setAttribute('class', 'barrier');
@@ -88,7 +87,7 @@ MG.Barrier = function (type) {
         lineNode.setAttribute('y2', y_);
 
         /* As the barriers path may not have been created yet, the original path is used */
-        var pathNode = document.getElementById(MG.BARRIER_PATH_IDS[mType]);
+        var pathNode = document.getElementById(WH.BARRIER_PATH_IDS[mType]);
 
 
         /* `Line` and `Path` are both part of Kevin Lindsey's svg geometry library. */
@@ -114,32 +113,20 @@ MG.Barrier = function (type) {
      * `offset` is the distance of the barrier from the viewpoint.
      */
     this.updateDOM = function (x, y, offset) {
-        var frontScale = MG.PROJECTION_PLANE_DISTANCE / 
-                (Math.tan(Math.PI * MG.FIELD_OF_VIEW/360.0)*(offset));
+        var frontScale = WH.PROJECTION_PLANE_DISTANCE / (Math.tan(Math.PI * WH.FIELD_OF_VIEW/360.0)*(offset));
 
-        var backScale    = MG.PROJECTION_PLANE_DISTANCE /
-                (Math.tan(Math.PI * MG.FIELD_OF_VIEW/360.0)*(offset + 10));
+        var backScale = WH.PROJECTION_PLANE_DISTANCE / (Math.tan(Math.PI * WH.FIELD_OF_VIEW/360.0)*(offset + 10));
 
-        mFrontPath.setAttribute('transform',
-                'scale(' + frontScale + ') translate(' + x    + ',' + y + ') rotate(' + mTheta + ')');
-        mBackPath.setAttribute('transform',
-                'scale(' + backScale + ') translate(' + x    + ',' + y + ') rotate(' + mTheta + ')');
+        mFrontPath.setAttribute('transform', 'scale(' + frontScale + ') translate(' + x + ',' + y + ') rotate(' + mTheta + ')');
+        mBackPath.setAttribute('transform', 'scale(' + backScale + ') translate(' + x + ',' + y + ') rotate(' + mTheta + ')');
 
-        offset = Math.max(MG.LINE_OF_SIGHT - MG.BARRIER_SPACING ,Math.min(MG.LINE_OF_SIGHT,offset));
-        var fog = 100 -100*(MG.LINE_OF_SIGHT - offset)/MG.BARRIER_SPACING;
+        offset = Math.max(WH.LINE_OF_SIGHT - WH.BARRIER_SPACING, Math.min(WH.LINE_OF_SIGHT,offset));
+        var fog = 100 - 100 * (WH.LINE_OF_SIGHT - offset) / WH.BARRIER_SPACING;
 
-        mFrontPath.setAttribute('fill',   'rgb('+(100+fog)+'%,'
-                                                +(100+fog)+'%,'
-                                                +(100+fog)+'%)');
-        mBackPath.setAttribute('fill',    'rgb(' +(60+fog)+'%,'
-                                                 +(60+fog)+'%,'
-                                                 +(60+fog)+'%)');
-        mFrontPath.setAttribute('stroke', 'rgb('  +(0+fog)+'%,'
-                                                  +(0+fog)+'%,'
-                                                  +(0+fog)+'%)');
-        mBackPath.setAttribute('stroke',  'rgb('  +(0+fog)+'%,'
-                                                  +(0+fog)+'%,'
-                                                  +(0+fog)+'%)');
+        mFrontPath.setAttribute('fill', 'rgb(' + (100 + fog) + '%,' + (100 + fog) + '%,' + (100 + fog) + '%)');
+        mBackPath.setAttribute('fill', 'rgb(' + (60 + fog) + '%,' + (60 + fog) + '%,' + (60 + fog) + '%)');
+        mFrontPath.setAttribute('stroke', 'rgb(' + (0 + fog)+'%,' + (0 + fog)+'%,' + (0 + fog) + '%)');
+        mBackPath.setAttribute('stroke', 'rgb(' + (0 + fog) + '%,' + (0 + fog) + '%,' + (0 + fog) + '%)');
     };
 
     this.getType = function () {

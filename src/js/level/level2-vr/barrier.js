@@ -1,4 +1,4 @@
-MG.BarrierType = {
+WHVR.BarrierType = {
     RANDOM: 'random',
 
     BARRIER_1: 1,
@@ -14,34 +14,34 @@ MG.BarrierType = {
 };
 
 
-MG.NUM_RANDOM_BARRIERS = 6;
+WHVR.NUM_RANDOM_BARRIERS = 6;
 
 
 
-/* TODO find nicer way of initalising MG.BARRIER_PATH_IDS */
-MG.BARRIER_PATH_IDS = {}
-MG.BARRIER_PATH_IDS[MG.BarrierType.RANDOM] = '';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_1] = 'barrier-path-1';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_2] = 'barrier-path-2';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_3] = 'barrier-path-3';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_4] = 'barrier-path-4';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_5] = 'barrier-path-5';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BARRIER_6] = 'barrier-path-6';
-MG.BARRIER_PATH_IDS[MG.BarrierType.BLANK] = 'barrier-path-blank';
-MG.BARRIER_PATH_IDS[MG.BarrierType.START] = 'barrier-path-blank';
-MG.BARRIER_PATH_IDS[MG.BarrierType.FINISH] = 'barrier-path-finish';
+/* TODO find nicer way of initalising WHVR.BARRIER_PATH_IDS */
+WHVR.BARRIER_PATH_IDS = {}
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.RANDOM] = '';
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.BARRIER_1] = 'barrier-path-1';
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.BARRIER_2] = 'barrier-path-2';
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.BARRIER_3] = 'barrier-path-3';
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.BARRIER_4] = 'barrier-path-4';
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.BARRIER_5] = 'barrier-path-5';
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.BARRIER_6] = 'barrier-path-6';
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.BLANK] = 'barrier-path-blank';
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.START] = 'barrier-path-blank';
+WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.FINISH] = 'barrier-path-finish';
 
 
-MG.Barrier = function (type) {
-    if (type === undefined) {type = MG.BarrierType.RANDOM;}
+WHVR.Barrier = function (type) {
+    if (type === undefined) {type = WHVR.BarrierType.RANDOM;}
 
     var mIsInitialised = false;
 
     var mTheta = 0.0;
     var mDTheta = 300.0*(0.25);
 
-    var mIsRandom = (type === MG.BarrierType.RANDOM);
-    var mType = (type === MG.BarrierType.RANDOM) ? Math.ceil(MG.NUM_RANDOM_BARRIERS*Math.random()) : type;
+    var mIsRandom = (type === WHVR.BarrierType.RANDOM);
+    var mType = (type === WHVR.BarrierType.RANDOM) ? Math.ceil(WHVR.NUM_RANDOM_BARRIERS*Math.random()) : type;
 
     var mRootNode;
     var mFrontPath;
@@ -52,11 +52,11 @@ MG.Barrier = function (type) {
         mRootNode = document.createElementNS(NAMESPACE_SVG, 'g');
 
         /* The path representing the face nearest the camera */
-        mFrontPath = document.getElementById(MG.BARRIER_PATH_IDS[mType]).cloneNode(true);
+        mFrontPath = document.getElementById(WHVR.BARRIER_PATH_IDS[mType]).cloneNode(true);
         mFrontPath.setAttribute('class', 'barrier-path-front');
 
         /* The path partially obscured by the front path, added to give the illusion of thickness. */
-        mBackPath = document.getElementById(MG.BARRIER_PATH_IDS[mType]).cloneNode(true);
+        mBackPath = document.getElementById(WHVR.BARRIER_PATH_IDS[mType]).cloneNode(true);
         mBackPath.setAttribute('class', 'barrier-path-back');
 
         mRootNode.setAttribute('class', 'barrier');
@@ -89,7 +89,7 @@ MG.Barrier = function (type) {
         lineNode.setAttribute('y2', y_);
 
         /* As the barriers path may not have been created yet, the original path is used */
-        var pathNode = document.getElementById(MG.BARRIER_PATH_IDS[mType]);
+        var pathNode = document.getElementById(WHVR.BARRIER_PATH_IDS[mType]);
 
 
         /* `Line` and `Path` are both part of Kevin Lindsey's svg geometry library. */
@@ -115,32 +115,30 @@ MG.Barrier = function (type) {
      * `offset` is the distance of the barrier from the viewpoint.
      */
     this.updateDOM = function (x, y, offset) {
-        var frontScale = MG.PROJECTION_PLANE_DISTANCE / 
-                (Math.tan(Math.PI * MG.FIELD_OF_VIEW/360.0)*(offset));
+        var frontScale = WHVR.PROJECTION_PLANE_DISTANCE / 
+                (Math.tan(Math.PI * WHVR.FIELD_OF_VIEW / 360.0) * (offset));
 
-        var backScale    = MG.PROJECTION_PLANE_DISTANCE /
-                (Math.tan(Math.PI * MG.FIELD_OF_VIEW/360.0)*(offset + 10));
+        var backScale = WHVR.PROJECTION_PLANE_DISTANCE /
+                (Math.tan(Math.PI * WHVR.FIELD_OF_VIEW / 360.0) * (offset + 10));
 
-        mFrontPath.setAttribute('transform',
-                'scale(' + frontScale + ') translate(' + x    + ',' + y + ') rotate(' + mTheta + ')');
-        mBackPath.setAttribute('transform',
-                'scale(' + backScale + ') translate(' + x    + ',' + y + ') rotate(' + mTheta + ')');
+        mFrontPath.setAttribute('transform', 'scale(' + frontScale + ') translate(' + x + ',' + y + ') rotate(' + mTheta + ')');
+        mBackPath.setAttribute('transform', 'scale(' + backScale + ') translate(' + x + ',' + y + ') rotate(' + mTheta + ')');
 
-        offset = Math.max(MG.LINE_OF_SIGHT - MG.BARRIER_SPACING ,Math.min(MG.LINE_OF_SIGHT,offset));
-        var fog = 100 -100*(MG.LINE_OF_SIGHT - offset)/MG.BARRIER_SPACING;
+        offset = Math.max(WHVR.LINE_OF_SIGHT - WHVR.BARRIER_SPACING ,Math.min(WHVR.LINE_OF_SIGHT,offset));
+        var fog = 100 -100*(WHVR.LINE_OF_SIGHT - offset)/WHVR.BARRIER_SPACING;
 
-        mFrontPath.setAttribute('fill',   'rgb('+(100+fog)+'%,'
-                                                +(100+fog)+'%,'
-                                                +(100+fog)+'%)');
-        mBackPath.setAttribute('fill',    'rgb(' +(60+fog)+'%,'
-                                                 +(60+fog)+'%,'
-                                                 +(60+fog)+'%)');
-        mFrontPath.setAttribute('stroke', 'rgb('  +(0+fog)+'%,'
-                                                  +(0+fog)+'%,'
-                                                  +(0+fog)+'%)');
-        mBackPath.setAttribute('stroke',  'rgb('  +(0+fog)+'%,'
-                                                  +(0+fog)+'%,'
-                                                  +(0+fog)+'%)');
+        mFrontPath.setAttribute('fill',   'rgb(' + (100 + fog) + '%,'
+                                                 + (100 + fog) + '%,'
+                                                 + (100 + fog) + '%)');
+        mBackPath.setAttribute('fill',    'rgb(' + (60 + fog) + '%,'
+                                                 + (60 + fog) + '%,'
+                                                 + (60 + fog) + '%)');
+        mFrontPath.setAttribute('stroke', 'rgb(' + (0 + fog) + '%,'
+                                                 + (0 + fog) + '%,'
+                                                 + (0 + fog) + '%)');
+        mBackPath.setAttribute('stroke',  'rgb(' + (0 + fog) + '%,'
+                                                 + (0 + fog) + '%,'
+                                                 + (0 + fog) + '%)');
     };
 
     this.getType = function () {

@@ -1,4 +1,4 @@
-MG.barrierQueue = (function () {
+WH.barrierQueue = (function () {
     var mBarrierQueue = [];
     var mRootNode;
 
@@ -43,7 +43,7 @@ MG.barrierQueue = (function () {
             var z = 0.0;
             for (i = 0; i < mBarrierQueue.length; i++) {
                 mBarrierQueue[i].updateDOM(missileX, missileY, z + missileOffset);
-                z += MG.BARRIER_SPACING;
+                z += WH.BARRIER_SPACING;
             }
         },
 
@@ -53,7 +53,7 @@ MG.barrierQueue = (function () {
          */
         pushBarrier: function (type) {
             /* Create a new barrier but do not initialise it */
-            var barrier = new MG.Barrier(type);
+            var barrier = new WH.Barrier(type);
 
             /* Add the barrier to the internal list */
             mBarrierQueue[mBarrierQueue.length] = barrier;

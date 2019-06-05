@@ -1,4 +1,4 @@
-MG.fog = (function (){
+WH.fog = (function (){
     var SHOW_TIME = 2.0;
     var HIDE_TIME = 4.0;
 
@@ -41,7 +41,8 @@ MG.fog = (function (){
                         mCallback = undefined;
                     }
                 }
-            } else {
+            } 
+            else {
                 mVisibility += dt/SHOW_TIME;
 
                 if (mVisibility > 1) {
@@ -57,9 +58,10 @@ MG.fog = (function (){
         updateDOM: function () {
             if (mVisibility < 0) {
                 mRootNode.setAttribute('visibility', 'hidden');
-            } else {
+            } 
+            else {
                 mRootNode.setAttribute('visibility', 'visible');
-                mRootNode.setAttribute('opacity', String((0.5 - 0.5*Math.cos(Math.PI*mVisibility))));
+                mRootNode.setAttribute('opacity', String((0.5 - 0.5 * Math.cos(Math.PI * mVisibility))));
             }
         }
     };

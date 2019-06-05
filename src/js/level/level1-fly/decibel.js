@@ -282,7 +282,7 @@ meter_test.on('sample', function (dB, percent, level) {
 
 	console.log(2 * percent * 100)
 
-	mousePos = { x: mousePos.x, y: (percent * 100 - 10) / 2 }
+	FLY.mousePos = { x: FLY.mousePos.x, y: (percent * 100 - 10) / 2 }
 });
 
 // 开启语音控制后，显示分贝条

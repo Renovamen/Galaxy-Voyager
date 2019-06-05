@@ -1,4 +1,4 @@
-MG.banner = (function () {
+WH.banner = (function () {
     var SHOW_TIME = 1.1;
     var HIDE_TIME = 0.8;
 
@@ -45,13 +45,13 @@ MG.banner = (function () {
                     mVisibility -= dt/HIDE_TIME;
                     break;
             }
-            mVisibility = Math.max(0,Math.min(1, mVisibility));
+            mVisibility = Math.max(0, Math.min(1, mVisibility));
         },
 
         updateDOM: function () {
             if (mVisibility === 0) mRootNode.setAttribute('visibility', 'hidden');
             else {
-                mRootNode.setAttribute('width', (30 + 80*(0.5 + 0.5*Math.cos(Math.PI*mVisibility))) + '%');
+                mRootNode.setAttribute('width', (30 + 80 * (0.5 + 0.5 * Math.cos(Math.PI * mVisibility))) + '%');
                 mRootNode.setAttribute('visibility', 'visible');
             }
         },

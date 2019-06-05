@@ -1,7 +1,7 @@
-MG.init = function () {
-    MG.fog.init();
-    MG.game.init();
-    MG.hud.init();
+WHVR.init = function () {
+    WHVR.fog.init();
+    WHVR.game.init();
+    WHVR.hud.init();
 
     window.addEventListener('deviceorientation', function(eventData){
         // gamma is the left-to-right tilt in degrees, where right is positive
@@ -14,18 +14,18 @@ MG.init = function () {
         var dir = eventData.alpha
         
         // call our orientation event handler
-        MG.game.deviceOrientationHandler(tiltLR, tiltFB, dir);
+        WHVR.game.deviceOrientationHandler(tiltLR, tiltFB, dir);
         
     }, false);
 
     var update = function (dt) {
-        MG.fog.update(dt);
-        MG.game.update(dt);
-        MG.hud.update(dt);
+        WHVR.fog.update(dt);
+        WHVR.game.update(dt);
+        WHVR.hud.update(dt);
 
-        MG.fog.updateDOM();
-        MG.game.updateDOM();
-        MG.hud.updateDOM();
+        WHVR.fog.updateDOM();
+        WHVR.game.updateDOM();
+        WHVR.hud.updateDOM();
     }
 
     var lastTick = 0;
@@ -46,7 +46,7 @@ MG.init = function () {
 
         thisTick = thisTick || 0;
         if (useFallback) dt = 1/30;
-        else var dt = (thisTick - lastTick)/1000;
+        else var dt = (thisTick - lastTick) / 1000;
 
         // pretend that the frame rate is actually higher if it drops below
         // 10fps in order to avoid wierdness
@@ -62,4 +62,4 @@ MG.init = function () {
     mainLoop();
 }
 
-MG.init();
+WHVR.init();
