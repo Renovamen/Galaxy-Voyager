@@ -56,7 +56,7 @@ FLY.loop = function(){
     }
   
   
-    spaceship.gun.rotation.x += 0.2 + FLY.game.shipSpeed * FLY.deltaTime * 0.005;
+    //spaceship.gun.rotation.x += 0.2 + FLY.game.shipSpeed * FLY.deltaTime * 0.005;
     planet.mesh.rotation.z += FLY.game.speed * FLY.deltaTime;
   
     if (planet.mesh.rotation.z > 2 * Math.PI) planet.mesh.rotation.z -= 2 * Math.PI;

@@ -1,7 +1,8 @@
 FLY.SpaceShip = function(){
+    
     this.mesh = new THREE.Object3D();
     this.mesh.name = "spaceShip";
-  
+    /*
     // 船舱
     var geomCabin = new THREE.BoxGeometry(80, 50, 50, 1, 1, 1);
     var matCabin = new THREE.MeshPhongMaterial({color: FLY.Colors.blue, shading: THREE.FlatShading});
@@ -79,7 +80,26 @@ FLY.SpaceShip = function(){
     this.gun.receiveShadow = true;
     this.gun.position.set(60, 0, 0);
     this.mesh.add(this.gun);
-  
+    */
+    
+    // 加载飞船模型
+    var mtlLoader = new THREE.MTLLoader();
+    mtlLoader.setPath( '../src/model/spaceship/' );
+    mtlLoader.load( 'spaceship.mtl', ( materials ) => {
+        materials.preload();
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials( materials );
+        objLoader.setPath( '../src/model/spaceship/' );
+        objLoader.load( 'spaceship.obj', ( obj ) => {
+            for(item of obj.children){
+                let tmp_mesh = item.clone();
+                tmp_mesh.scale.set(15, 15, 15);
+                tmp_mesh.rotation.y = Math.PI / 2;
+                this.mesh.add(tmp_mesh);
+            }
+        } );
+    } );
+    
     this.mesh.castShadow = true;
     this.mesh.receiveShadow = true;
 };

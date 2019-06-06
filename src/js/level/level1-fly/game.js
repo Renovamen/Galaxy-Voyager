@@ -96,7 +96,7 @@ FLY.resetGame = function(){
 
 FLY.createShip = function(){
     spaceship = new FLY.SpaceShip();
-    spaceship.mesh.scale.set(.25,.25,.25);
+    //spaceship.mesh.scale.set(.25,.25,.25);
     spaceship.mesh.position.y = FLY.game.shipDefaultHeight;
     scene.add(spaceship.mesh);
 }
