@@ -280,9 +280,9 @@ meter_test.on('sample', function (dB, percent, level) {
 	dbBar.style.width = 2 * (percent * 100) + '%';
 	dbValue.innerHTML = Math.floor(2 * percent * 100) + '%';
 
-	console.log(2 * percent * 100)
+	//console.log(percent * 100)
 
-	FLY.mousePos = { x: FLY.mousePos.x, y: (percent * 100 - 10) / 2 }
+	FLY.mousePos = { x: FLY.mousePos.x, y: -0.9 + percent * 2 * 2 }
 });
 
 // 开启语音控制后，显示分贝条

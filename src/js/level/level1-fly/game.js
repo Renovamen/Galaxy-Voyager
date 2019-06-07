@@ -67,17 +67,17 @@ FLY.resetGame = function(){
         cameraNearPos:150,
         cameraSensivity:0.002,
     
-        coinDistanceTolerance:15,
-        coinValue:3,
-        coinsSpeed:.5,
-        coinLastSpawn:0,
-        distanceForCoinsSpawn:60,
+        coinDistanceTolerance: 15,
+        coinValue: 3,
+        coinsSpeed: 0.5,
+        coinLastSpawn: 0,
+        distanceForCoinsSpawn: 60,
     
-        antimatterDistanceTolerance:10,
-        antimatterValue:10,
-        ennemiesSpeed:.6,
-        antimatterLastSpawn:0,
-        distanceForEnnemiesSpawn:30,
+        antimatterDistanceTolerance: 10,
+        antimatterValue: 10,
+        antimatterSpeed: 0.6,
+        antimatterLastSpawn: 0,
+        distanceForAntiSpawn: 20,
     
         status : "playing",
     };

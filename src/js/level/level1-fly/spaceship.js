@@ -95,6 +95,8 @@ FLY.SpaceShip = function(){
                 let tmp_mesh = item.clone();
                 tmp_mesh.scale.set(15, 15, 15);
                 tmp_mesh.rotation.y = Math.PI / 2;
+                tmp_mesh.castShadow = true;
+                tmp_mesh.receiveShadow = true;
                 this.mesh.add(tmp_mesh);
             }
         } );

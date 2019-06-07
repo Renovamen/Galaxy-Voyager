@@ -2,7 +2,7 @@ FLY.loop = function(){
 
     if (FLY.game.status=="playing"){
   
-        // 每 100m 生成一些能量块
+        // 每 60m 生成一些能量块
         if (Math.floor(FLY.game.distance) % FLY.game.distanceForCoinsSpawn == 0 && Math.floor(FLY.game.distance) > FLY.game.coinLastSpawn){
             FLY.game.coinLastSpawn = Math.floor(FLY.game.distance);
             coinsHolder.spawnCoins();
@@ -14,8 +14,8 @@ FLY.loop = function(){
             FLY.game.targetBaseSpeed += FLY.game.incrementSpeedByTime * FLY.deltaTime;
         }
     
-        // 每 50m 生成一些反物质
-        if (Math.floor(FLY.game.distance) % FLY.game.distanceForEnnemiesSpawn == 0 && Math.floor(FLY.game.distance) > FLY.game.antimatterLastSpawn){
+        // 每 20m 生成一些反物质
+        if (Math.floor(FLY.game.distance) % FLY.game.distanceForAntiSpawn == 0 && Math.floor(FLY.game.distance) > FLY.game.antimatterLastSpawn){
             FLY.game.antimatterLastSpawn = Math.floor(FLY.game.distance);
             ennemiesHolder.spawnAnti();
         }
@@ -54,7 +54,8 @@ FLY.loop = function(){
     else if (FLY.game.status=="waitingReplay"){
       
     }
-  
+    
+    //console.log(FLY.mousePos);
   
     //spaceship.gun.rotation.x += 0.2 + FLY.game.shipSpeed * FLY.deltaTime * 0.005;
     planet.mesh.rotation.z += FLY.game.speed * FLY.deltaTime;

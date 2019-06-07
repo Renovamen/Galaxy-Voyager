@@ -18,7 +18,7 @@ FLY.AntiHolder = function (){
 }
   
 FLY.AntiHolder.prototype.spawnAnti = function(){
-    var nAnti = FLY.game.level;
+    var nAnti = FLY.game.level * 2;
   
     for (var i = 0; i < nAnti; i++){
         var antimatter;
@@ -38,7 +38,7 @@ FLY.AntiHolder.prototype.spawnAnti = function(){
 FLY.AntiHolder.prototype.rotateAnti = function(){
     for (var i=0; i<this.ennemiesInUse.length; i++){
         var antimatter = this.ennemiesInUse[i];
-        antimatter.angle += FLY.game.speed * FLY.deltaTime * FLY.game.ennemiesSpeed;
+        antimatter.angle += FLY.game.speed * FLY.deltaTime * FLY.game.antimatterSpeed;
     
         if (antimatter.angle > Math.PI*2) antimatter.angle -= Math.PI * 2;
     
