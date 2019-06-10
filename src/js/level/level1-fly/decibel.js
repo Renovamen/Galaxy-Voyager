@@ -277,12 +277,15 @@ meter_test.on('ready', function (meter_test, sources) {
 
 // 测量分贝大小
 meter_test.on('sample', function (dB, percent, level) {
-	dbBar.style.width = 2 * (percent * 100) + '%';
-	dbValue.innerHTML = Math.floor(2 * percent * 100) + '%';
+
+	var value = 2*percent > 1 ? 1 : 2*percent;
+
+	dbBar.style.width = value*100 + '%';
+	dbValue.innerHTML = Math.floor(value*100) + '%';
 
 	//console.log(percent * 100)
-
-	FLY.mousePos = { x: FLY.mousePos.x, y: -0.9 + percent * 2 * 2 }
+	
+	FLY.mousePos = { x: FLY.mousePos.x, y: -0.9 + value*2 }
 });
 
 // 开启语音控制后，显示分贝条

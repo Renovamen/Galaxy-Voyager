@@ -2,7 +2,7 @@ FLY.loop = function(){
 
     if (FLY.game.status=="playing"){
   
-        // 每 60m 生成一些能量块
+        // 每 40m 生成一些能量块
         if (Math.floor(FLY.game.distance) % FLY.game.distanceForCoinsSpawn == 0 && Math.floor(FLY.game.distance) > FLY.game.coinLastSpawn){
             FLY.game.coinLastSpawn = Math.floor(FLY.game.distance);
             coinsHolder.spawnCoins();

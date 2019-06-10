@@ -30,13 +30,13 @@ FLY.resetGame = function(){
         baseSpeed: 0.0002, // 单位速度
         targetBaseSpeed: 0.0002, // 目标速度
         incrementSpeedByTime: 0.000001, // 每单位时间提多少速
-        incrementSpeedByLevel: 0.000005, // 每等级提多少速
+        incrementSpeedByLevel: 0.000015, // 每等级提多少速
         distanceForSpeedUpdate: 100, // 每过多少距离提一次速
         speedLastUpdate: 0, // 上次提速时间
         distance: 0, // 行驶距离
         ratioSpeedDistance: 50, // 每单位速度行驶的距离
         energy: 100, // 当前能量
-        ratioSpeedEnergy: 3, // 每单位速度消耗的能量
+        ratioSpeedEnergy: 10, // 每单位速度消耗的能量
         level: 1, // 当前等级
         levelLastUpdate: 0, // 上次升级时间
         distanceForLevelUpdate: 1000, // 每次升级提多少速
@@ -71,7 +71,7 @@ FLY.resetGame = function(){
         coinValue: 3,
         coinsSpeed: 0.5,
         coinLastSpawn: 0,
-        distanceForCoinsSpawn: 60,
+        distanceForCoinsSpawn: 40,
     
         antimatterDistanceTolerance: 10,
         antimatterValue: 10,
