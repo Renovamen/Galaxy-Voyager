@@ -20,7 +20,9 @@ Fly a spaceship to eat energy coins (blue) and avoid crashing antimatter (red) (
 
 Screenshot:
 
-![screenshot-fly](screenshots/fly.jpg)
+![screenshot-fly](screenshots/fly-ui.jpg)
+
+![screenshot-fly](screenshots/fly-decibel.jpg)
 
 &nbsp;
 
@@ -32,11 +34,13 @@ Play it: [Normal](https://renovamen.github.io/Galaxy-Voyager/views/level2.html),
 
 Screenshot:
 
-![screenshot-wormhole](screenshots/wormhole.jpg)
+- Normal
 
-VR:
+  ![screenshot-wormhole](screenshots/wormhole.jpg)
 
-![screenshot-wormhole-vr](screenshots/wormhole-vr.jpg)
+- VR
+
+  ![screenshot-wormhole-vr](screenshots/wormhole-vr.jpg)
 
 &nbsp;
 
