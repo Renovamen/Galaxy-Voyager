@@ -77,7 +77,6 @@ FLY.loop = function(){
 
 FLY.init = function(event){
 
-    // UI
     fieldDistance = document.getElementById("distValue");
     energyBar = document.getElementById("energyBar");
     replayMessage = document.getElementById("replayMessage");
@@ -94,7 +93,7 @@ FLY.init = function(event){
     FLY.createSky(); // 天上飞的没啥用的物体
     FLY.createCoins(); // 能量块
     FLY.createAnti(); // 反物质
-    FLY.createParticles();
+    FLY.createParticles(); // 能量块和反物质被撞后分裂
   
     document.addEventListener('mousemove', FLY.handleMouseMove, false);
     document.addEventListener('touchmove', FLY.handleTouchMove, false);

@@ -1,7 +1,6 @@
 FLY.Particle = function(){
     var geom = new THREE.TetrahedronGeometry(3, 0);
     var mat = new THREE.MeshPhongMaterial({
-        color: 0x009999,
         shininess: 0,
         specular: 0xffffff,
         shading: THREE.FlatShading

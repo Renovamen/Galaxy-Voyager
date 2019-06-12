@@ -25,4 +25,3 @@ FLY.Sky.prototype.moveClouds = function(){
     }
     this.mesh.rotation.z += FLY.game.speed * FLY.deltaTime;
 }
-  

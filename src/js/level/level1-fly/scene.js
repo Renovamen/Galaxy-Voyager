@@ -27,4 +27,3 @@ FLY.createScene = function() {
   
     window.addEventListener('resize', FLY.handleWindowResize, false);
 }
-  

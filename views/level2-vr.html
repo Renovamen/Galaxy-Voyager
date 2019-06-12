@@ -16,7 +16,7 @@
     </a>
   </div>
 
-  <!------------ 游戏 ------------>
+  <!------------ VR 游戏 ------------>
   <div class="bg" style="background-image: url(../src/img/level/level2/vr-bg.jpg)">
     <div class="bg-holder">
       <svg
@@ -39,7 +39,7 @@
           visibility="hidden" >
         </svg>
 
-        <!------------ EXPLOSION ------------>
+        <!------------ 撞到挡板后的动画 ------------>
         <svg
           width="100%" height="100%"
           preserveAspectRatio="xMidYMid meet"
@@ -160,11 +160,10 @@
           </path>
         </svg>
       
-        <!------------ HUD ------------>
         <g id="hud" visibility="hidden" >
           <svg preserveAspectRatio="xMinYMid meet" viewBox="0 0 0.1 1">
             <g transform="translate(0.02, 0.98), scale(0.15,-0.15)">
-            <!------------ Radar Scope ------------>
+              <!------------ 方向雷达 ------------>
               <g>
                 <circle class="hud-background" cx="0.5" cy="0.5" r="0.5"></circle>
                 <circle id="hud-radar-scope-missile-target"
@@ -180,7 +179,7 @@
                   <circle cx="0.5" cy="0.5" r="0.5"></circle>
                 </clipPath>
               </g>
-              <!------------ Speedometer ------------>
+              <!------------ 速度计 ------------>
               <g>
                 <g transform="translate(1.1,0.1), scale(1.8,1.8)">
                   <rect class="hud-background" 
@@ -225,7 +224,7 @@
       
       
           <svg preserveAspectRatio="xMaxYMid meet" viewBox="0 0 0.06 1">
-          <!------------ Progress Indicator ------------>
+            <!------------ 进度条 ------------>
             <g transform="translate(0,0.965), scale(0.95,-0.95)">
       
               <path stroke="#333333" stroke-width="0.0005"
@@ -266,11 +265,11 @@
           </svg>
         </g>
       
-        <!------------ FOG ------------>
+        <!------------ 淡入淡出 ------------>
         <rect id="fog" width="100%" height="100%" fill="white" opacity="1" />
       
         <defs>
-          <!--== BARRIER PATHS ========================================================-->
+          <!------------ 障碍 ------------>
           <path
             id="barrier-path-1"
             d="M 100,0
@@ -435,15 +434,16 @@
               z">
           </path>
       
-      
-          <!-- Collision Detection -->
+          <!------------ 碰撞检测 ------------>
           <line id="collision-line" x1="-300" y1="100" x2="100" y2="100"></line>
         </defs>
       </svg>
     </div>
   </div>
+
   <script type="text/javascript" src="../lib/2D.js"></script>
   <script type="text/javascript" src="../lib/Path.js"></script>
+
   <script type="text/javascript" src="../src/js/level/level2-vr/base.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/missile.js"></script>
   <script type="text/javascript" src="../src/js/level/level2-vr/wall1.js"></script>

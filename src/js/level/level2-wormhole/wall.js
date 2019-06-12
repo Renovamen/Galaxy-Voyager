@@ -53,8 +53,8 @@ WH.tunnelWall = (function (rootNode) {
             for (var i = 0; i < NUM_SEGMENTS; i++) {
                 var segmentTheta = mTheta + 360 * i / NUM_SEGMENTS;
 
-                var x_ = -x * Math.cos(segmentTheta * Math.PI/180) + -y * Math.sin(segmentTheta * Math.PI / 180);
-                var y_ = -x * Math.sin(segmentTheta * Math.PI/180) +  y * Math.cos(segmentTheta * Math.PI / 180);
+                var x_ = -x * Math.cos(segmentTheta * Math.PI/180) - y * Math.sin(segmentTheta * Math.PI / 180);
+                var y_ = -x * Math.sin(segmentTheta * Math.PI/180) + y * Math.cos(segmentTheta * Math.PI / 180);
 
                 var scale_x_ = 0.1 * WH.PROJECTION_PLANE_DISTANCE * (1 - x_ / WH.TUNNEL_RADIUS)
                              / (Math.tan(Math.PI * WH.FIELD_OF_VIEW / 360.0) * NEAR_CLIPPING_PLANE);

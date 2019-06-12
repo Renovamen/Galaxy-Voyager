@@ -4,16 +4,14 @@ WHVR.init = function () {
     WHVR.hud.init();
 
     window.addEventListener('deviceorientation', function(eventData){
-        // gamma is the left-to-right tilt in degrees, where right is positive
+        // 设备绕 y 轴旋转的角度，前倾为正
         var tiltLR = eventData.gamma;
-        
-        // beta is the front-to-back tilt in degrees, where front is positive
+        // 设备绕 x 轴旋转的角度，右倾为正
         var tiltFB = eventData.beta;
-        
-        // alpha is the compass direction the device is facing in degrees
+        // 设备面向的指南针方向
         var dir = eventData.alpha
-        
-        // call our orientation event handler
+
+        // Orientation Event
         WHVR.game.deviceOrientationHandler(tiltLR, tiltFB, dir);
         
     }, false);
@@ -37,8 +35,6 @@ WHVR.init = function () {
     var mainLoop = function(thisTick) {
         var dt;
 
-        // Some browsers don't pass in a time.  If `thisTick` isn't set for
-        //  more than a few frames fall back to `setTimeout`
         if (!thisTick) zeroCounter += 1;
         else zeroCounter = 0;
 
@@ -48,8 +44,6 @@ WHVR.init = function () {
         if (useFallback) dt = 1/30;
         else var dt = (thisTick - lastTick) / 1000;
 
-        // pretend that the frame rate is actually higher if it drops below
-        // 10fps in order to avoid wierdness
         if (dt > 1/10) dt = 1/10;
 
         lastTick = thisTick;

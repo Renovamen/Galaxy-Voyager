@@ -40,7 +40,6 @@ WH.banner = (function () {
                         mTitleNode.data = mTitle;
                         mTextNode.data  = mText;
                     }
-                    // FALLTHROUGH
                 case BannerState.HIDDEN:
                     mVisibility -= dt/HIDE_TIME;
                     break;

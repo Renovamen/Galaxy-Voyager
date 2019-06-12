@@ -4,7 +4,7 @@ It is not easy to be a voyager, but we still want to leave...
 
 &nbsp;
 
-## Preview
+## Play It
 
 https://renovamen.github.io/Galaxy-Voyager/
 
@@ -14,7 +14,7 @@ https://renovamen.github.io/Galaxy-Voyager/
 
 ### Voyage #1: Fly
 
-Fly a spaceship to eat energy coins and avoid crashing antimatter (Based on [TheAviator](https://github.com/yakudoo/TheAviator)). Voice control is supported, the flying height of the plane will depend on your decibel level after clicking the "microphone" button (Obviously, this idea is inspired by 休むな！８分音符ちゃん).
+Fly a spaceship to eat energy coins (blue) and avoid crashing antimatter (red) (Based on [TheAviator](https://github.com/yakudoo/TheAviator)). Voice control is supported, the flying height of the plane will depend on your decibel level after clicking the "microphone" button (Obviously, this idea is inspired by 休むな！８分音符ちゃん).
 
 [Play it](https://renovamen.github.io/Galaxy-Voyager/views/level1.html)
 
@@ -57,14 +57,12 @@ Then, open  http://127.0.0.1:8080.
 ## Dependencies
 
 - [three.js](https://github.com/mrdoob/three.js/): JavaScript 3D library, using for building character and environment in *Voyage #1: Fly*.
-- [TweenMax](https://www.tweenmax.com.cn/): JavaScript animation library, using for making animation of the plane in *Voyage #1: Fly*.
-
-- [Path.js & 2D.js](http://www.kevlindev.com/gui/shapes/path/index.htm): SVG geometry library, using for environment in *Voyage #2: Wormhole*.
-
+  - [MTLLoader.js](https://github.com/mrdoob/three.js/blob/master/examples/js/loaders/MTLLoader.js): Load spaceship model (mtl).
+  - [OBJLoader.js](https://github.com/mrdoob/three.js/blob/master/src/loaders/ObjectLoader.js): Load spaceship model (obj).
+- [TweenMax](https://www.tweenmax.com.cn/): JavaScript animation library, using for making animation of the plane, energy coins and antimatter in *Voyage #1: Fly*.
+- [Path.js & 2D.js](http://www.kevlindev.com/gui/shapes/path/index.htm): SVG geometry library, using for building environment in *Voyage #2: Wormhole*.
 - [ThreeCSG](https://github.com/chandlerprall/ThreeCSG): CSG plugin for three.js, using for special effects of title in homepage.
 - [jBox](https://github.com/StephanWagner/jBox): A jQuery plugin that makes it easy to create customizable tooltips and more.
-
 - [Font Awesome](https://github.com/FortAwesome/Font-Awesome): A icon set.
 - [jQuery](https://github.com/jquery/jquery): A JavaScript library.
-
 - [Bootstrap](https://github.com/twbs/bootstrap): A front-end component library.

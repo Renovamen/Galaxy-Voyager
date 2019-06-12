@@ -1,6 +1,5 @@
 WH.game = (function () {
 
-    /** Constants **/
     var GameState = {
         WAIT_START: 'wait_start',
         STARTING:   'starting',
@@ -10,22 +9,17 @@ WH.game = (function () {
     }
 
     var STARTING_LIVES = 5;
-
     var LEVEL_NUM_BARRIERS = 20;
 
-    /** Variables **/
-    var mState = GameState.WAIT_START;
 
+    var mState = GameState.WAIT_START;
     var mLives = STARTING_LIVES;
     var mLevel = 0;
-
     var mRemainingBarriers = 0;
     var mBarriersToPass = 0;
-
     var mProgress = 0.0;
     var mBestProgress = 0.0;
 
-    /* Strings for UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
     var getLevelString = function () {
         return mLevel ? 'LEVEL ' + mLevel : 'THROUGH THE WORMHOLE';
     }
@@ -68,17 +62,11 @@ WH.game = (function () {
     }
 
     var playCrashAnimation = function () {
-        // TODO move drawing out of the update loop
 
-        // create a copy of the explosion element
         var explosion = document.getElementById('explosion');
-
-        // play the animation
         explosion.firstChild.beginElement();
         explosion.setAttribute('visibility', 'visible');
 
-        // TODO can't seem to get a callback to fire when the animation
-        // finishes. Use timeout instead
         setTimeout(function (){
             var explosion = document.getElementById('explosion');
             explosion.setAttribute('visibility', 'hidden');
@@ -100,9 +88,7 @@ WH.game = (function () {
     var goRun = function () {
         WH.banner.hide();
         WH.util.hideMouse();
-
-        /* TODO should the start barrier be pushed here?
-        If so, should all of the barriers for the entire level be pushed as well? */
+        
         mRemainingBarriers = LEVEL_NUM_BARRIERS;
         WH.barrierQueue.pushBarrier(WH.BarrierType.START);
 
@@ -164,22 +150,20 @@ WH.game = (function () {
             WH.tunnelWall.update(dt);
             WH.barrierQueue.update(dt);    
 
-            /* check whether the nearest barrier has been reached and whether the missile collides with it. */
+            // 是否会撞上最近的障碍物
             if (!WH.barrierQueue.isEmpty()) {
                 if (WH.missile.getOffset() < WH.MISSILE_LENGTH && !WH.missile.isCrashed()){
                     var barrier = WH.barrierQueue.nextBarrier();
-
+                    // 撞了
                     if (barrier.collides(WH.missile.getPosition().x, WH.missile.getPosition().y)) {
-                        // CRASH
                         WH.missile.onCrash();
                         goCrash();
                     } 
+                    // 没撞
                     else {
-                        // BARRIER PASSED
                         WH.barrierQueue.popBarrier();
                         WH.missile.onBarrierPassed();
 
-                        // TODO this block makes loads of assumptions about state
                         if (mState === GameState.RUNNING || mState === GameState.STARTING) {
                             switch(barrier.getType()) {
                                 case WH.BarrierType.FINISH:
@@ -189,7 +173,6 @@ WH.game = (function () {
                                     break;
                                 case WH.BarrierType.START:
                                     mState = GameState.RUNNING;
-                                    // FALLTHROUGH
                                 default:
                                     mBarriersToPass--;
 
@@ -208,8 +191,7 @@ WH.game = (function () {
             }
 
         
-            /* Pad the barrier queue with blank barriers so that there are barriers
-            as far as can be seen. */
+            // 放置障碍物
             while (WH.barrierQueue.numBarriers() < WH.LINE_OF_SIGHT/WH.BARRIER_SPACING) {
                 var type = WH.BarrierType.BLANK;
     
@@ -223,7 +205,7 @@ WH.game = (function () {
                 WH.barrierQueue.pushBarrier(type);
             }
 
-            /* Update progress */
+            // 更新进度条
             switch (mState) {
                 case GameState.RUNNING:
                     mProgress = 1 - (mBarriersToPass*WH.BARRIER_SPACING + WH.missile.getOffset())/(LEVEL_NUM_BARRIERS * WH.BARRIER_SPACING);
@@ -296,22 +278,16 @@ WH.game = (function () {
             }
         },
 
-        /* Returns an integer representing the current level */
         getLevel: function () {
             return mLevel;
         },
 
-        /* Returns a human readable string describing the current level */
         getLevelString: getLevelString,
 
-        /* Returns the number of times the player can crash before game over. */
-        /* If the player crashes with zero lives remaining the game ends */
         getNumLives: function () {
             return mLives;
         },
 
-        /* Returns the progress through the level as a value between 0 and 1,
-        where 0 is not yet started and 1 is completed. */
         getProgress: function () {
             return mProgress;       
         },

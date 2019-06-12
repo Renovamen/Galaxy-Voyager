@@ -12,7 +12,7 @@ WHVR.barrierQueue2 = (function () {
         update: function (dt) {
             var i;
 
-            /* iterate through and update each of the barriers in the queue */
+            // 更新障碍队列里每一个障碍
             for (i = mFirstBarrierIndex; i < mBarrierQueue.length; i++) {
                 mBarrierQueue[i].update(dt);
             }
@@ -21,14 +21,14 @@ WHVR.barrierQueue2 = (function () {
         updateDOM: function (missileX, missileY, missileOffset) {
             var i;
 
-            /* Remove any barriers that have been queued for deletion */
+            // 移除已经经过的障碍
             while (mFirstBarrierIndex > 0) {
                 mBarrierQueue[0].destroy();
                 mBarrierQueue.shift();
                 mFirstBarrierIndex --;
             }
 
-            /* Initialise any uninitialised barriers and add them behind the ones already there. */
+            // 在上一个障碍后添加障碍
             for (i = 0; i < mBarrierQueue.length; i++) {
                 var barrier = mBarrierQueue[i];
 
@@ -47,54 +47,37 @@ WHVR.barrierQueue2 = (function () {
             }
         },
 
-        /**
-         * Adds a new barrier to the end of the queue.
-         * The starting angle and angular rate are randomized.
-         */
+        // 障碍队列添加新障碍，初始旋转角度随机
         pushBarrier: function (type) {
-            /* Create a new barrier but do not initialise it */
             var barrier = new WHVR.Barrier(type);
-
-            /* Add the barrier to the internal list */
             mBarrierQueue[mBarrierQueue.length] = barrier;
-
         },
 
-        /**
-         * Pops the barrier closest to the missile.
-         */
+        // 队头障碍（离屏幕最近的障碍）出队列
         popBarrier: function () {
             mFirstBarrierIndex++;
             mFirstBarrierIndex = Math.min(mFirstBarrierIndex, mBarrierQueue.length);
         },
 
-        /**
-         * Returns a reference to the barrier at the front of the queue.
-         */
+        // 指针指向队头障碍
         nextBarrier: function () {
             return mBarrierQueue[mFirstBarrierIndex];
         },
 
-        /**
-         * Deletes all barriers and returns the queue to it's original, empty state.
-         */
+        // 清空障碍队列
         reset: function () {
             while (mFirstBarrierIndex < mBarrierQueue.length) {
                 this.popBarrier();
             }
         },
 
-        /**
-         * Returns true if there are no barriers queued.
-         */
+        // 若障碍队列为空，返回 true
         isEmpty: function () {
             return this.nextBarrier() === undefined;
         },
 
 
-        /**
-         * Returns the number of barriers in the queue that have not been marked for deletion.
-         */
+        // 队列内剩余障碍数量
         numBarriers: function () {
             return mBarrierQueue.length - mFirstBarrierIndex;
         }

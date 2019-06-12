@@ -10,8 +10,7 @@ WH.hud = (function () {
         init: function () {
             mRootNode = document.getElementById('hud');
 
-            // ---------------- Radar ----------------
-
+            // 方向雷达
             mRadar = (function () {
                 var mMissilePositionDot = document.getElementById('hud-radar-scope-missile');
                 var mMissileTargetDot = document.getElementById('hud-radar-scope-missile-target');
@@ -23,13 +22,12 @@ WH.hud = (function () {
                     update: function (dt) {
                         mMissileTarget = WH.missile.getTarget();
                         mMissilePosition = WH.missile.getPosition();
-                        // PASS
                     },
                     updateDOM: function () {
                         var x,y;
                         var scopeRadius = 0.5;
 
-                        /* Set the position of the dot indicating the intended target of the missile */
+                        // 雷达显示 继续向当前方向移动视角 视角点将要到达的位置
                         x = scopeRadius + 0.95 * scopeRadius * mMissileTarget.x
                                                / WH.TUNNEL_RADIUS;
                         y = scopeRadius + 0.95 * scopeRadius * mMissileTarget.y
@@ -38,7 +36,7 @@ WH.hud = (function () {
                         mMissileTargetDot.setAttribute('cx', String(x));
                         mMissileTargetDot.setAttribute('cy', String(y));
 
-                        /* Set the position of the dot indicating the actual position of the missile */
+                        // 雷达显示当前视角点的位置
                         x = scopeRadius + 0.95 * scopeRadius * mMissilePosition.x
                                                / WH.TUNNEL_RADIUS;
                         y = scopeRadius + 0.95 * scopeRadius * mMissilePosition.y
@@ -52,8 +50,7 @@ WH.hud = (function () {
 
 
 
-            // ---------------- Speedometer ----------------
-
+            // 速度计
             mSpeedometer = (function () {
                 var mBarNode = document.getElementById('hud-speedometer-bar');
 
@@ -68,14 +65,12 @@ WH.hud = (function () {
                     },
                     updateDOM: function () {
                         mTextNode.data = mSpeed.toFixed(0);
-                        
-                        // TODO (possibly) work out the maximum speed properly and put a cap on the level with a nice victory screen
                         mBarNode.setAttribute('x', mSpeed/2000 - 1);
                     }
                 };
             } ());
 
-            // ---------------- Progress Indicator ----------------
+            // 进度条
             mProgressIndicator = (function () {
                 var mProgressMarkNode = document.getElementById('hud-progress-indicator-progress');
                 var mBestProgressMarkNode = document.getElementById('hud-progress-indicator-best-progress');

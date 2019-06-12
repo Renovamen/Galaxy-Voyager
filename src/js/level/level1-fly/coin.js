@@ -68,4 +68,3 @@ FLY.CoinsHolder.prototype.rotateCoins = function(){
         }
     }
 }
-  

@@ -5,26 +5,27 @@ FLY.WIDTH = window.innerWidth;
 
 FLY.mousePos = { x: 0, y: 0 }
 
-//COLORS
 FLY.Colors = {
     red: 0xfc0404,
     white: 0xd8d0d1,
     brown: 0x2c2428,
+    /*
     grey: 0x8f9090,
     orange: 0xf98101,
     blue: 0x79a2f9,
     purple: 0x390376,
     green: 0x037654,
+    */
 };
 
-// GAME VARIABLES
+
 FLY.deltaTime = 67;
 FLY.antiPool = [];
 FLY.particlesPool = [];
 
 FLY.resetGame = function(){
     FLY.game = {
-        // --------------- 基本变量 --------------- 
+        // --------------- 基本 --------------- 
         speed: 0,
         initSpeed: 0.0002, // 初始速度
         baseSpeed: 0.0002, // 单位速度
@@ -41,7 +42,7 @@ FLY.resetGame = function(){
         levelLastUpdate: 0, // 上次升级时间
         distanceForLevelUpdate: 1000, // 每次升级提多少速
     
-        // --------------- 飞船变量 --------------- 
+        // --------------- 飞船 --------------- 
         shipDefaultHeight: 100,
         shipAmpHeight: 80,
         shipAmpWidth: 75,
@@ -57,22 +58,25 @@ FLY.resetGame = function(){
         shipCollisionDisplacementY: 0,
         shipCollisionSpeedY: 0,
   
-        // ------------- 星球变量 ------------- 
+        // ------------- 星球 ------------- 
         planetRadius:1200, // 弧度
         planetLength:800, // 周长
         groundMinAmp : 5, // 地面最小凸起
         groundMaxAmp : 10, // 地面最大凸起
-    
+        
+        // ------------- 相机 ------------- 
         cameraFarPos:500,
         cameraNearPos:150,
         cameraSensivity:0.002,
-    
+        
+        // ------------- 能量块 ------------- 
         coinDistanceTolerance: 15,
         coinValue: 3,
         coinsSpeed: 0.5,
         coinLastSpawn: 0,
         distanceForCoinsSpawn: 40,
-    
+        
+        // ------------- 反物质 ------------- 
         antimatterDistanceTolerance: 10,
         antimatterValue: 10,
         antimatterSpeed: 0.6,

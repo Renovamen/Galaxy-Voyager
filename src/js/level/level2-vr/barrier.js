@@ -16,9 +16,6 @@ WHVR.BarrierType = {
 
 WHVR.NUM_RANDOM_BARRIERS = 6;
 
-
-
-/* TODO find nicer way of initalising WHVR.BARRIER_PATH_IDS */
 WHVR.BARRIER_PATH_IDS = {}
 WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.RANDOM] = '';
 WHVR.BARRIER_PATH_IDS[WHVR.BarrierType.BARRIER_1] = 'barrier-path-1';
@@ -51,11 +48,11 @@ WHVR.Barrier = function (type) {
 
         mRootNode = document.createElementNS(NAMESPACE_SVG, 'g');
 
-        /* The path representing the face nearest the camera */
+        // 障碍靠近屏幕的那一面
         mFrontPath = document.getElementById(WHVR.BARRIER_PATH_IDS[mType]).cloneNode(true);
         mFrontPath.setAttribute('class', 'barrier-path-front');
 
-        /* The path partially obscured by the front path, added to give the illusion of thickness. */
+        // 另外那一面
         mBackPath = document.getElementById(WHVR.BARRIER_PATH_IDS[mType]).cloneNode(true);
         mBackPath.setAttribute('class', 'barrier-path-back');
 
@@ -70,30 +67,18 @@ WHVR.Barrier = function (type) {
         mRootNode.parentNode.removeChild(mRootNode);
     };
 
-    /**
-     * Checks whether the point specified by x and y will collide with the barrier.
-     * Works by counting the number of intersections between the path outlining the
-     * barrier and a line between some point outside of the barrier, and the point
-     * that is being tested.
-     * Returns true if the point intersects the transformed barrier, false otherwise.
-     */
+    // 点 (x, y) 是否会与某障碍相撞
     this.collides = function (x, y) {
-        /* transform the provided coordinates to the coordinate system of the barrier */
+        // 点 (x, y) 相对该障碍的坐标
         var x_ =    x * Math.cos(mTheta*Math.PI/180) + y * Math.sin(mTheta*Math.PI/180);
         var y_ = -x * Math.sin(mTheta*Math.PI/180) + y * Math.cos(mTheta*Math.PI/180);
 
-        /* the line to be used for finding the intersections should already exist
-        but needs to be made to the point to the point that is to be tested */
         var lineNode = document.getElementById('collision-line');
         lineNode.setAttribute('x2', x_);
         lineNode.setAttribute('y2', y_);
 
-        /* As the barriers path may not have been created yet, the original path is used */
         var pathNode = document.getElementById(WHVR.BARRIER_PATH_IDS[mType]);
 
-
-        /* `Line` and `Path` are both part of Kevin Lindsey's svg geometry library. */
-        /* `Path` has been hacked to properly support elliptical arc segments. */
         var line = new Line(lineNode);
         var path = new Path(pathNode);
 
@@ -108,12 +93,7 @@ WHVR.Barrier = function (type) {
     };
 
 
-    /**
-     * Updates the barriers representation in the DOM to reflect changes made at
-     * the last update.
-     * `x` and `y` define the position of the viewpoint.
-     * `offset` is the distance of the barrier from the viewpoint.
-     */
+    // (x, y)：视点，offset：障碍与视点的距离
     this.updateDOM = function (x, y, offset) {
         var frontScale = WHVR.PROJECTION_PLANE_DISTANCE / 
                 (Math.tan(Math.PI * WHVR.FIELD_OF_VIEW / 360.0) * (offset));

@@ -1,6 +1,5 @@
 WHVR.game = (function () {
 
-    /** Constants **/
     var GameState = {
         WAIT_START: 'wait_start',
         STARTING:   'starting',
@@ -8,15 +7,12 @@ WHVR.game = (function () {
         FINISHED:   'finished',
         CRASHED:    'crashed'
     }
-
     var firstload = 1;
     var sdir;
-
     var STARTING_LIVES = 5;
-
     var LEVEL_NUM_BARRIERS = 20;
 
-    /** Variables **/
+
     var mState = GameState.WAIT_START;
 
     var mLives = STARTING_LIVES;
@@ -29,15 +25,6 @@ WHVR.game = (function () {
     var mBestProgress = 0.0;
 
     var cBarrier = WHVR.BarrierType.BARRIER_1;
-
-//    XXX AUDIO XXX
-//    var NUM_WOOSH_INSTANCES = 3;
-//    var mWoosh = [];
-//    var mLastWoosh = 0;
-//    var mWooshPlaying = false;
-
-
-    /* Strings for UI ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     var getLevelString = function () {
         return mLevel ? 'LEVEL ' + mLevel : 'THROUGH THE WORMHOLE';
@@ -81,17 +68,12 @@ WHVR.game = (function () {
     }
 
     var playCrashAnimation = function () {
-        // TODO move drawing out of the update loop
 
-        // create a copy of the explosion element
         var explosion = document.getElementById('explosion');
 
-        // play the animation
         explosion.firstChild.beginElement();
         explosion.setAttribute('visibility', 'visible');
 
-        // TODO can't seem to get a callback to fire when the animation
-        // finishes. Use timeout instead
         setTimeout(function (){
             var explosion = document.getElementById('explosion');
             explosion.setAttribute('visibility', 'hidden');
@@ -103,7 +85,7 @@ WHVR.game = (function () {
         WHVR.missile.setAutopilot();
         WHVR.missile.setVelocity(getPreLevelIdleVelocity(mLevel));
 
-        if (mLevel === 0) {mLives = Infinity;}
+        if (mLevel === 0) mLives = Infinity;
 
         mState = GameState.WAIT_START;
 
@@ -114,8 +96,6 @@ WHVR.game = (function () {
 
     var goRun = function () {
 
-        /* TODO should the start barrier be pushed here?
-        If so, should all of the barriers for the entire level be pushed as well? */
         mRemainingBarriers = LEVEL_NUM_BARRIERS;
         WHVR.barrierQueue1.pushBarrier(WHVR.BarrierType.START);
         WHVR.barrierQueue2.pushBarrier(WHVR.BarrierType.START);
@@ -201,15 +181,6 @@ WHVR.game = (function () {
             rootNode1.appendChild(barrierQueueNode1);
             rootNode2.appendChild(barrierQueueNode2);
 
-            //
-
-//            XXX AUDIO XXX
-//            for (var i=0; i<NUM_WOOSH_INSTANCES; i++) {
-//                mWoosh[i] = new Audio("woosh2.mp3");
-//            }
-
-            //
-
             goWaitStartLevel();
 
             rootNode1.setAttribute('visibility', 'visible');
@@ -223,38 +194,22 @@ WHVR.game = (function () {
             WHVR.tunnelWall2.update(dt);
             WHVR.barrierQueue1.update(dt);    
             WHVR.barrierQueue2.update(dt); 
-//            XXX AUDIO XXX
-//            if (WHVR.missile.getOffset()/WHVR.missile.getVelocity() < 0.8 && mWooshPlaying === false && mState !== GameState.CRASHED) {
-//                mWooshPlaying = true;
-////                var woosh = document.getElementById('woosh-sound').cloneNode(true);
-////                woosh.setAttribute('autoplay', 'autoplay');
-//                mLastWoosh++;
-//                mLastWoosh = mLastWoosh == NUM_WOOSH_INSTANCES ? 0 : mLastWoosh;
-//                
-//                mWoosh[mLastWoosh].play();
-//            }
 
-
-            /* check whether the nearest barrier has been reached and whether the missile collides with it. */
+            // 是否会撞上最近的障碍物
             if (!WHVR.barrierQueue1.isEmpty()) {
                 if (WHVR.missile.getOffset() < WHVR.MISSILE_LENGTH && !WHVR.missile.isCrashed()){
                     var barrier = WHVR.barrierQueue1.nextBarrier();
-
+                    // 撞了
                     if (barrier.collides(WHVR.missile.getPosition().x, WHVR.missile.getPosition().y)) {
-                        // CRASH
                         WHVR.missile.onCrash();
                         goCrash();
                     } 
+                    // 没撞
                     else {
-                        // BARRIER PASSED
                         WHVR.barrierQueue1.popBarrier();
                         WHVR.barrierQueue2.popBarrier();
                         WHVR.missile.onBarrierPassed();
 
-//                        XXX AUDIO XXX
-//                        mWooshPlaying = false;
-
-                        // TODO this block makes loads of assumptions about state
                         if (mState === GameState.RUNNING || mState === GameState.STARTING) {
                             switch(barrier.getType()) {
                                 case WHVR.BarrierType.FINISH:
@@ -264,7 +219,6 @@ WHVR.game = (function () {
                                     break;
                                 case WHVR.BarrierType.START:
                                     mState = GameState.RUNNING;
-                                    // FALLTHROUGH
                                 default:
                                     mBarriersToPass--;
 
@@ -283,8 +237,7 @@ WHVR.game = (function () {
             }
 
         
-            /* Pad the barrier queue with blank barriers so that there are barriers
-            as far as can be seen. */
+            // 放置障碍物
             while (WHVR.barrierQueue1.numBarriers() < WHVR.LINE_OF_SIGHT/WHVR.BARRIER_SPACING) {
                 var type = WHVR.BarrierType.BLANK;
     
@@ -328,7 +281,7 @@ WHVR.game = (function () {
                 WHVR.barrierQueue2.pushBarrier(type);
             }
 
-            /* Update progress */
+            // 更新进度条
             switch (mState) {
                 case GameState.RUNNING:
                     mProgress = 1 - (mBarriersToPass*WHVR.BARRIER_SPACING + WHVR.missile.getOffset())/(LEVEL_NUM_BARRIERS * WHVR.BARRIER_SPACING);
@@ -371,8 +324,6 @@ WHVR.game = (function () {
                 sdir = rdir;
                 firstload ++;
             }
-
-            //sdir = 200;
 
             console.log(rdir, sdir);
 
@@ -1251,32 +1202,6 @@ WHVR.game = (function () {
             }
 
             if ((rtiltLR < 45) && (rtiltLR > -30)) yval = 90;
-
-
-            /*if ((rtiltLR > -75) && (rtiltLR < 0))
-            {
-                yval = -60;
-            }
-            if ((rtiltLR < 75) && (rtiltLR > 0))
-            {
-                yval = 60;
-            }
-            if ((rdir > (sdir + 15)) && (rdir < (sdir + 90)))
-            {
-                xval = -60;
-            }
-            if ((rdir < (sdir - 15)) && (rdir > (sdir - 90)))
-            {
-                xval = 60;
-            }
-            if ((rdir > ((sdir - 180) + 15)) && (rdir < ((sdir - 180) + 90)))
-            {
-                xval = -60;
-            }
-            if ((rdir < ((sdir - 180) - 15)) && (rdir > ((sdir - 180) - 90)))
-            {
-                xval = 60;
-            }*/
             
             if((xval*xval) + (yval*yval) <= (90* 90))  
             {
@@ -1284,22 +1209,16 @@ WHVR.game = (function () {
             }
         },
 
-        /* Returns an integer representing the current level */
         getLevel: function () {
             return mLevel;
         },
 
-        /* Returns a human readable string describing the current level */
         getLevelString: getLevelString,
 
-        /* Returns the number of times the player can crash before game over. */
-        /* If the player crashes with zero lives remaining the game ends */
         getNumLives: function () {
             return mLives;
         },
 
-        /* Returns the progress through the level as a value between 0 and 1,
-        where 0 is not yet started and 1 is completed. */
         getProgress: function () {
             return mProgress;       
         },
@@ -1308,10 +1227,4 @@ WHVR.game = (function () {
             return mBestProgress;
         }
     };
-
-
 }());
-
-
-
-

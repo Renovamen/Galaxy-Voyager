@@ -36,7 +36,7 @@
         xmlns="http://www.w3.org/2000/svg"
         style="position: fixed; width: 100%; height: 100%; margin: 0;">
       
-        <!--== TUNNEL ===============================================================-->
+        <!------------ TUNNEL ------------>
         <svg id="tunnel"
           width="100%" height="100%"
           preserveAspectRatio="xMidYMid meet"
@@ -44,7 +44,7 @@
           visibility="hidden" >
         </svg>
       
-        <!--== EXPLOSION!!!! ========================================================-->
+        <!------------ 撞到挡板后的动画 ------------>
         <svg
           width="100%" height="100%"
           preserveAspectRatio="xMidYMid meet"
@@ -165,11 +165,10 @@
           </path>
         </svg>
       
-        <!--== HUD ==================================================================-->
         <g id="hud" visibility="hidden" >
           <svg preserveAspectRatio="xMinYMid meet" viewBox="0 0 0.1 1">
             <g transform="translate(0.02, 0.98), scale(0.15,-0.15)">
-              <!-- Radar Scope -->
+              <!------------ 方向雷达 ------------>
               <g>
                 <circle
                   class="hud-background"
@@ -200,7 +199,7 @@
                 </clipPath>
               </g>
 
-              <!-- Speedometer-->
+              <!------------ 速度计 ------------>
               <g>
                 <g transform="translate(1.1,0.1), scale(1.8,1.8)">
                   <rect class="hud-background" width="1.0" height="0.122"></rect>
@@ -239,7 +238,7 @@
           </svg>
           
           <svg preserveAspectRatio="xMaxYMid meet" viewBox="0 0 0.06 1">
-            <!-- Progress Indicator ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+              <!------------ 进度条 ------------>
               <g
                 transform="translate(0,0.965), scale(0.95,-0.95)">
         
@@ -284,13 +283,13 @@
         </g>
     
       
-      <!--== FOG ==================================================================-->
+        <!------------ 淡入淡出 ------------>
         <rect id="fog"
           width="100%" height="100%"
           fill="white"
           opacity="1" />
       
-      <!--== BANNER ===============================================================-->
+        <!------------ 开场提示条 ------------>
         <svg id="banner"
           width="130%" height="100%"
           preserveAspectRatio="xMaxYMid meet"
@@ -318,8 +317,7 @@
       
       
         <defs>
-      
-      <!--== BARRIER PATHS ========================================================-->
+          <!------------ 障碍 ------------>
           <path
             id="barrier-path-1"
             d="M 100,0
@@ -477,13 +475,10 @@
                 z" />
       
       
-      <!-- Collision Detection -->
-          <line
-            id="collision-line"
-            x1="-300"
-            y1="100"
-            x2="100"
-            y2="100" />
+          <!------------ 碰撞检测 ------------>
+          <line id="collision-line"
+                x1="-300" y1="100"
+                x2="100" y2="100" />
         </defs>
       </svg>
     </div>

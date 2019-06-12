@@ -1,4 +1,3 @@
-
 FLY.Cloud = function(){
     this.mesh = new THREE.Object3D();
     this.mesh.name = "cloud";

@@ -34,8 +34,6 @@ WH.init = function () {
     var mainLoop = function(thisTick) {
         var dt;
 
-        // Some browsers don't pass in a time.  If `thisTick` isn't set for
-        //  more than a few frames fall back to `setTimeout`
         if (!thisTick) zeroCounter += 1;
         else zeroCounter = 0;
         
@@ -44,9 +42,7 @@ WH.init = function () {
         thisTick = thisTick || 0;
         if (useFallback) dt = 1/30;
         else var dt = (thisTick - lastTick) / 1000;
-        
-        // pretend that the frame rate is actually higher if it drops below
-        // 10fps in order to avoid wierdness
+
         if (dt > 1/10) dt = 1/10;
 
         lastTick = thisTick;

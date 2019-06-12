@@ -41,7 +41,8 @@ WHVR.fog = (function (){
                         mCallback = undefined;
                     }
                 }
-            } else {
+            } 
+            else {
                 mVisibility += dt/SHOW_TIME;
 
                 if (mVisibility > 1) {
@@ -55,9 +56,8 @@ WHVR.fog = (function (){
         },
 
         updateDOM: function () {
-            if (mVisibility < 0) {
-                mRootNode.setAttribute('visibility', 'hidden');
-            } else {
+            if (mVisibility < 0) mRootNode.setAttribute('visibility', 'hidden');
+            else {
                 mRootNode.setAttribute('visibility', 'visible');
                 mRootNode.setAttribute('opacity', String((0.5 - 0.5*Math.cos(Math.PI*mVisibility))));
             }

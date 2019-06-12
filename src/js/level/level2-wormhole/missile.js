@@ -58,10 +58,7 @@ WH.missile = (function () {
 
             switch (mState) {
                 case MissileState.AUTOPILOT:
-                    /* When under autopilot control, the missile will randomly
-                    drift around the center of the tunnel, changing direction at
-                    discrete intervals. */
-                    /* The drift counter contains the time until the next direction change. */
+                    // 关卡开始前，视角方向随机变化
                     mDriftCounter -= dt;
                     if (mDriftCounter < 0) {
                         mDriftCounter = 1.1 + 0.9*Math.random();
@@ -70,7 +67,6 @@ WH.missile = (function () {
                         mDriftVelY = (WH.TUNNEL_RADIUS*(Math.random()-0.5) - mTargetY)/1.5;
                     }
 
-                    /* TODO Smooth */
                     mX += mDriftVelX * dt ;
                     mY += mDriftVelY * dt ;
 
@@ -82,10 +78,9 @@ WH.missile = (function () {
                     break;
 
                 default:
-                    /* leave the missile pointing in the same direction */
             }
 
-            /* Clamp the missile's position to inside the tunnel wall */
+            // 视角不能出界
             var radius = Math.sqrt(mX*mX + mY*mY);
             var newRadius = Math.min(MAX_RADIUS, radius);
 
@@ -95,11 +90,10 @@ WH.missile = (function () {
 
 
             if (mState === MissileState.CRASHED) {
-                /* If the missile has crashed, it will bounce backwards coming
-                to rest near the location of the previous barrier. */
-                mVelocity += dt*WH.BARRIER_SPACING*mVelocity/(mOffset - WH.BARRIER_SPACING);
+                // 撞上障碍后的回弹效果
+                mVelocity += dt*WH.BARRIER_SPACING*mVelocity / (mOffset - WH.BARRIER_SPACING);
             } 
-            else mVelocity += dt*(mTargetVelocity - mVelocity)/ACCELERATION_TIME_CONSTANT;
+            else mVelocity += dt*(mTargetVelocity - mVelocity) / ACCELERATION_TIME_CONSTANT;
 
             mOffset -= mVelocity * dt;
         },
