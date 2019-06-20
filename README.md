@@ -20,9 +20,9 @@ Fly a spaceship to eat energy coins (blue) and avoid crashing antimatter (red) (
 
 Screenshot:
 
-![screenshot-fly](screenshots/fly-ui.jpg)
+![screenshot-fly](docs/fly-ui.jpg)
 
-![screenshot-fly](screenshots/fly-decibel.jpg)
+![screenshot-fly](docs/fly-decibel.jpg)
 
 &nbsp;
 
@@ -36,11 +36,11 @@ Screenshot:
 
 - Normal
 
-  ![screenshot-wormhole](screenshots/wormhole.jpg)
+  ![screenshot-wormhole](docs/wormhole.jpg)
 
 - VR
 
-  ![screenshot-wormhole-vr](screenshots/wormhole-vr.jpg)
+  ![screenshot-wormhole-vr](docs/wormhole-vr.jpg)
 
 &nbsp;
 

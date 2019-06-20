@@ -6,7 +6,6 @@ FLY.Cloud = function(){
         color: FLY.Colors.white,
     });
   
-    //*
     var nBlocs = 3 + Math.floor(Math.random()*3);
     for (var i=0; i < nBlocs; i++ ){
         var m = new THREE.Mesh(geom.clone(), mat);

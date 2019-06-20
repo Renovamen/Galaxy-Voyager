@@ -1,11 +1,9 @@
 function Line() {
-
   this.container, this.renderer, this.scene, this.camera;
   this.light, this.light_right, this.light_left;
   this.content, this.settings, this.group, this.mesh;
 
   this.characters = [];
-
 }
 
 Line.prototype.init = function(elementID, content, settings) {
@@ -13,11 +11,8 @@ Line.prototype.init = function(elementID, content, settings) {
   this.container = document.getElementById(elementID);
   var $container = $(this.container);
 
-
   // ADD CHECKS FOR VARIABLE EXISTANCE (IE. CONTENT)
   // SET BASE VARAIBLES OR OVERRIDES
-
-
 
   // >>> END
 
@@ -47,7 +42,6 @@ Line.prototype.init = function(elementID, content, settings) {
   this.addListeners();
 
   this.render();
-
 }
 
 Line.prototype.setupLights = function() {
@@ -90,7 +84,6 @@ Line.prototype.setupContent = function() {
 
   // Add content group to scene
   this.scene.add(this.group);
-
 }
 
 Line.prototype.resize = function() {
@@ -119,7 +112,6 @@ Line.prototype.update = function(percentage) {
       this.characters[i].update(percentage);
     }
   }
-
 }
 
 Line.prototype.addListeners = function() {

@@ -1,6 +1,6 @@
 var line1, line2, text1, text2, font;
 var scrollPercent = 0;
-var valleys = ['valley-1','valley-2','valley-3','valley-4','valley-5','valley-6'];
+var valleys = ['galaxy-1','galaxy-2','galaxy-3','galaxy-4','galaxy-5','galaxy-6'];
 
 $(function() {
 
@@ -11,18 +11,13 @@ $(function() {
 	resizeContainers();
 
 	// Check for WebGL
-	if (!window.WebGLRenderingContext)
-	{
-		// the browser doesn't even know what WebGL is
-		initPageNoWebGL();
-	} else
+	// the browser doesn't even know what WebGL is
+	if (!window.WebGLRenderingContext) initPageNoWebGL();
+	else
 	{
 		var canvas = document.getElementById("canvas-test");
     	var ctx = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-    	if (!ctx)
-    	{
-			initPageWebGLProblem();
-		}
+    	if (!ctx) initPageWebGLProblem();
 		else 
 		{
 			initPage();
@@ -42,7 +37,6 @@ $(function() {
     $(window).resize(function() {
       resizeContainers()
     });
-
 });
 
 function initPage() {
@@ -67,11 +61,9 @@ function initPage() {
 	// Initialise Valley Positions
 	var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
 	scrollUpdateValleys(scrollTop);
-
 }
 
 function checkIfTextFade() {
-
 	var opacity = $('#text-wrapper .text-inner').css('opacity');
   	var margin_top_max = -80;
   	var margin_top = margin_top_max * (1 - opacity);
@@ -86,12 +78,8 @@ function addSettingsListeners() {
   		var scrollLimit = $('#text-wrapper').height() * 1.2;
   		scrollPercent = (scrollTop / scrollLimit) * 100;
 
-  		if(scrollPercent < 0) {
-  			scrollPercent = 0;
-  		}
-  		else if (scrollPercent > 100) {
-  			scrollPercent = 100;
-  		}
+  		if(scrollPercent < 0) scrollPercent = 0;
+  		else if (scrollPercent > 100) scrollPercent = 100;
 
   		// Run Update on Valleys
   		scrollUpdateValleys(scrollTop);
@@ -101,7 +89,6 @@ function addSettingsListeners() {
 
   		// Check if Text Effects Fading
   		checkIfTextFade();
-
 	});
 
 	// Add resize listener to deal with Line adjustments.
@@ -158,19 +145,12 @@ function init3DText() {
   		$('#ThreeD-2').text('');
   		line2.init("ThreeD-2", text2, settings);
 	}
-	else
-	{
-		console.error("FONT EFFECT SETTINGS NOT FOUND");
-		// -> OR REVERT TO DEFAULTS?
-	}
-
-
+	else console.error("FONT EFFECT SETTINGS NOT FOUND");
 }
 
 function resizeContainers() {
-
 	// Resize valleys to maintain aspect ratio
-	var el = $('div#valley-1');
+	var el = $('div#galaxy-1');
 	var ratio = el.width() / parseInt( el.css('max-width') );
   	var height = parseInt(el.css('max-height')) * ratio;
   	$('div.valley').height(height);
@@ -207,7 +187,7 @@ function rotateAroundWorldAxis(object, axis, radians) {
     rotWorldMatrix.makeRotationAxis(axis.normalize(), radians);
     
     // >>> REMOVED TO STOP ADDITION
-    rotWorldMatrix.multiply(object.matrix);                // pre-multiply
+    rotWorldMatrix.multiply(object.matrix); // pre-multiply
 
     object.matrix = rotWorldMatrix;
 
