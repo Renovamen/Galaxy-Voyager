@@ -11,7 +11,6 @@ function Character() {
   this.x0_rotation = 0; this.x1_rotation = 0;
   this.y0_rotation = 0; this.y1_rotation = 0;
   this.z0_rotation = 0; this.z1_rotation = 0;
-
 }
 
 Character.prototype.init = function(parent,char,settings,posX,ratio) {
@@ -36,7 +35,6 @@ Character.prototype.init = function(parent,char,settings,posX,ratio) {
     this.setupParams();
 
     this.setupEffects();
-
 }
 
 Character.prototype.setupBaseChar = function() {
@@ -46,20 +44,14 @@ Character.prototype.setupBaseChar = function() {
   var geometry = new THREE.TextGeometry( this.char, params );
   
   this.mesh = new THREE.Mesh(geometry, material);
-
 }
 
 Character.prototype.setupParams = function() {
   
   var options = this.getOptions();
     
-  if (options.split !== undefined) {
-    this.params['split'] = options.split;
-  }
-
-  if (options.rotation !== undefined) {
-    this.params['rotation'] = options.rotation;
-  }
+  if (options.split !== undefined) this.params['split'] = options.split;
+  if (options.rotation !== undefined) this.params['rotation'] = options.rotation;
 }
 
 Character.prototype.getOptions = function() {
@@ -102,19 +94,12 @@ Character.prototype.setupEffects = function() {
   this.group.position.x += this.posX + (this.x/2);
 
   this.setupRotation();
-
 }
 
 Character.prototype.createSubChars = function() {
-
   // If split parameters exist in params then create 2 sub chars else 1.
-  if (this.params.split !== undefined) {
-    this.splitInTwo();
-  }
-  else {
-    this.createSingleSubChar();
-  }
-
+  if (this.params.split !== undefined) this.splitInTwo();
+  else this.createSingleSubChar();
 }
 
 Character.prototype.createSingleSubChar = function() {
@@ -127,7 +112,6 @@ Character.prototype.createSingleSubChar = function() {
   subchar.init(this, mesh, "split", 0, 0);
 
   this.subchars.push(subchar); 
-
 }
 
 Character.prototype.splitInTwo = function() {
@@ -176,44 +160,34 @@ Character.prototype.splitInTwo = function() {
 }
 
 Character.prototype.substractBoxFromLetter = function(box) {
-    
-    var mesh = this.mesh.clone();
+  var mesh = this.mesh.clone();
 
-    var CSG_mesh = new ThreeBSP(mesh);
-    var CSG_box = new ThreeBSP(box);
+  var CSG_mesh = new ThreeBSP(mesh);
+  var CSG_box = new ThreeBSP(box);
 
-    CSG_mesh = CSG_mesh.subtract(CSG_box);
+  CSG_mesh = CSG_mesh.subtract(CSG_box);
 
-    return CSG_mesh.toMesh(new THREE.MeshLambertMaterial({color: this.color, shading: THREE.SmoothShading}));
+  return CSG_mesh.toMesh(new THREE.MeshLambertMaterial({color: this.color, shading: THREE.SmoothShading}));
 }
 
 Character.prototype.updateBoundingBox = function() {
-
   this.mesh.geometry.computeBoundingBox();
   this.box = this.mesh.geometry.boundingBox.clone();
-
 }
 
 Character.prototype.setupRotation = function() {
-
   if (this.params.rotation !== undefined) {
-
     this.x0_rotation = this.params.rotation.r0.x;
     this.x1_rotation = this.params.rotation.r1.x;
     this.y0_rotation = this.params.rotation.r0.y;
     this.y1_rotation = this.params.rotation.r1.y;
     this.z0_rotation = this.params.rotation.r0.z;
     this.z1_rotation = this.params.rotation.r1.z;
-
   }
 }
 
 Character.prototype.update = function(percentage) {
-
-  for (var i = 0; i < this.subchars.length; i++)
-  {
-    this.subchars[i].update(percentage);
-  }
+  for (var i = 0; i < this.subchars.length; i++) this.subchars[i].update(percentage);
 
   var x_rotation = this.x0_rotation + ((this.x1_rotation - this.x0_rotation) * (percentage / 100));
   var y_rotation = this.y0_rotation + ((this.y1_rotation - this.y0_rotation) * (percentage / 100));
@@ -226,5 +200,4 @@ Character.prototype.update = function(percentage) {
   rotateAroundWorldAxis(this.group, new THREE.Vector3(1,0,0), x_rotation);
   rotateAroundWorldAxis(this.group, new THREE.Vector3(0,1,0), y_rotation);
   rotateAroundWorldAxis(this.group, new THREE.Vector3(0,0,1), z_rotation);
-
 }

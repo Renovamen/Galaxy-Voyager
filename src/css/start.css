@@ -196,36 +196,36 @@ hr {
   max-height: 1025px; 
 }
 
-#valley-1 {
+#galaxy-1 {
   background: url("../img/start/galaxy-1.png") no-repeat; 
 }
 
-#valley-2 {
+#galaxy-2 {
   background: url("../img/start/galaxy-2.png") no-repeat;
   opacity: 0.9; 
 }
 
-#valley-3 {
+#galaxy-3 {
   background: url("../img/start/galaxy-3.png") no-repeat;
   opacity: 0.85; 
 }
 
-#valley-4 {
+#galaxy-4 {
   background: url("../img/start/galaxy-4.png") no-repeat;
   opacity: 0.8; 
 }
 
-#valley-5 {
+#galaxy-5 {
   background: url("../img/start/galaxy-5.png") no-repeat;
   opacity: 0.75; 
 }
 
-#valley-6 {
+#galaxy-6 {
   background: url("../img/start/galaxy-6.png") no-repeat;
   opacity: 0.8; 
 }
 
-#valley-1, #valley-2, #valley-3, #valley-4, #valley-5, #valley-6 {
+#galaxy-1, #galaxy-2, #galaxy-3, #galaxy-4, #galaxy-5, #galaxy-6 {
   position: absolute;
   background-size: 100% 100%;
   transition: transform 0.25s; 
