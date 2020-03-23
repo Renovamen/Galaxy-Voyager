@@ -6,7 +6,7 @@ It is not easy to be a voyager, but we still want to leave...
 
 ## Play It
 
-https://renovamen.github.io/Galaxy-Voyager/
+http://galaxy-voyager.renovamen.ink
 
 &nbsp;
 
