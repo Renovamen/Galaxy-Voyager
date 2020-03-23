@@ -2,11 +2,13 @@
 
 It is not easy to be a voyager, but we still want to leave...
 
+
 &nbsp;
 
 ## Play It
 
-https://renovamen.github.io/Galaxy-Voyager/
+https://galaxy.zxh.io
+
 
 &nbsp;
 
@@ -16,7 +18,7 @@ https://renovamen.github.io/Galaxy-Voyager/
 
 Fly a spaceship to eat energy coins (blue) and avoid crashing antimatter (red) (Based on [TheAviator](https://github.com/yakudoo/TheAviator)). Voice control is supported (using [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)), the flying height of the plane will depend on your decibel level after clicking the "microphone" button (Obviously, this idea is inspired by 休むな！８分音符ちゃん).
 
-[Play it](https://renovamen.github.io/Galaxy-Voyager/views/level1.html)
+[Play it](https://galaxy.zxh.io/views/level1.html)
 
 Screenshot:
 
@@ -24,13 +26,14 @@ Screenshot:
 
 ![screenshot-fly](docs/fly-decibel.jpg)
 
+
 &nbsp;
 
 ### Voyage #2: Wormhole
 
 Fly a spaceship to past a sequence of rotating barriers and avoid crashing (Based on [missile-game](https://github.com/bwhmather/missile-game)). VR is supported if you have a Google Cardboard or other similar devices (using [DeviceOrientationEvent](https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent) for head tracking). According to my test (iPhone 7 & Essential Phone), VR experience on Firefox is the best.
 
-Play it: [Normal](https://renovamen.github.io/Galaxy-Voyager/views/level2.html), [VR](https://renovamen.github.io/Galaxy-Voyager/views/level2-vr.html)
+Play it: [Normal](https://galaxy.zxh.io/views/level2.html), [VR](https://galaxy.zxh.io/views/level2-vr.html)
 
 Screenshot:
 
@@ -41,6 +44,7 @@ Screenshot:
 - VR
 
   ![screenshot-wormhole-vr](docs/wormhole-vr.jpg)
+
 
 &nbsp;
 
@@ -55,6 +59,7 @@ http-server
 ```
 
 Then, open  http://127.0.0.1:8080.
+
 
 &nbsp;
 
